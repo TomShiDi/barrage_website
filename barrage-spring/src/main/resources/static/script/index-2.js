@@ -25,11 +25,11 @@ var colorSelected = "white";//被选择颜色 预设值
 
 var transitionEvent = whichTransitionEvent();//判断浏览器内核类型
 
-// var menuItem = document.getElementsByClassName("menu-item")[0].onclick = report(20);//TODO
-
 var index = 1;//数据库弹幕表分页页码
 
-var I = 0;
+var deviceType = goPAGE();
+
+var I = 0;//右键弹幕的id
 sliderHandle.style.left = "0px";
 
 
@@ -106,6 +106,11 @@ barrageData_2 = barrageData_2.concat();
 
 
 })();
+
+
+window.onload = function (ev) {
+    document.getElementsByClassName("menu-item")[0].onclick = report();//TODO
+}
 
 /**
  * 鼠标指定弹幕事件函数
@@ -186,21 +191,31 @@ function sendBarrage(barrageId, content, colorSelected, speedNum, rangeValue, ro
     newBarrage.onmouseleave = function (ev) {
         onMouseLeave(this);
     };
-    newBarrage.onclick = function (ev) {
-        var ul = document.getElementsByClassName("right-menu-ul")[0];
+    if (deviceType === "pc"){
+        newBarrage.onclick = function (ev) {
+            var ul = document.getElementsByClassName("right-menu-ul")[0];
 
-        ul.style.display = "none";
-        mouseClicked(this);
-    };
-    newBarrage.oncontextmenu = function (ev){
-        var ul = document.getElementsByClassName("right-menu-ul")[0];
+            ul.style.display = "none";
+            mouseClicked(this);
+        };
+    } else {
+        newBarrage.ontouchend = function (ev) {
+            var ul = document.getElementsByClassName("right-menu-ul")[0];
 
-        event.preventDefault();
-
-        ul.style.display = "block";
-        ul.style.left = event.clientX +"px";
-        ul.style.top = event.clientY + "px";
+            ul.style.display = "none";
+            mouseClicked(this);
+        }
     }
+
+    newBarrage.oncontextmenu = function (ev) {
+        var ul = document.getElementsByClassName("right-menu-ul")[0];
+        // console.log("右键事件", this.childNodes);
+        event.preventDefault();
+        I = index;
+        ul.style.display = "block";
+        ul.style.left = event.clientX + 10 + "px";
+        ul.style.top = event.clientY + 10 + "px";
+    };
 
     //TODO 备注，dom初始化的时机
     barrageRoad[roadNum].appendChild(newBarrage);
@@ -223,40 +238,81 @@ function sendBarrage(barrageId, content, colorSelected, speedNum, rangeValue, ro
  * 滑块鼠标按下事件函数
  * @param event
  */
-sliderHandle.onmousedown = function (event) {
-    var that = this;
-    var oldX = event.clientX;
-    var left = parseInt(that.style.left);
+if (deviceType === "pc"){
+    sliderHandle.onmousedown = function (event) {
+        var that = this;
+        var oldX = event.clientX;
+        var left = parseInt(that.style.left);
 
 
-    // console.log("mousedown  ", sliderHandle);
-    document.onmousemove = function (ev) {
-        var x = ev.clientX - oldX;
+        // console.log("mousedown  ", sliderHandle);
+        document.onmousemove = function (ev) {
+            var x = ev.clientX - oldX;
 
-        that.style.left = left + x + "px";
+            that.style.left = left + x + "px";
 
-        rangeValue = Math.ceil((parseInt(that.style.left) / sliderRect.width) * 40) + 1;
+            rangeValue = Math.ceil((parseInt(that.style.left) / sliderRect.width) * 40) + 1;
 
 
-        if (parseInt(that.style.left) < 0) {
-            that.style.left = "0";
-            rangeValue = 10;
+            if (parseInt(that.style.left) < 0) {
+                that.style.left = "0";
+                rangeValue = 10;
+            }
+            if (parseInt(that.style.left) > sliderRect.width) {
+                that.style.left = sliderRect.width - 10 + "px";
+                rangeValue = 50;
+            }
+            sliderFill.style.width = that.style.left;
+            textPreview.style.fontSize = rangeValue + "px";
+            console.log("rangeValue: ", rangeValue);
+        };
+
+
+        document.onmouseup = function (ev) {
+            document.onmouseup = null;
+            document.onmousemove = null;
         }
-        if (parseInt(that.style.left) > sliderRect.width) {
-            that.style.left = sliderRect.width - 10 + "px";
-            rangeValue = 50;
+    };
+} else {
+    sliderHandle.ontouchstart = function (event) {
+        var that = this;
+        var oldX = event.clientX;
+        var left = parseInt(that.style.left);
+
+
+        // console.log("mousedown  ", sliderHandle);
+        document.ontouchmove = function (ev) {
+            var x = ev.clientX - oldX;
+
+            that.style.left = left + x + "px";
+
+            console.log("left", that.style.left);
+
+            rangeValue = Math.ceil((parseInt(that.style.left) / sliderRect.width) * 40) + 1;
+
+
+            if (parseInt(that.style.left) < 0) {
+                that.style.left = "0";
+                rangeValue = 10;
+            }
+            if (parseInt(that.style.left) > sliderRect.width) {
+                that.style.left = sliderRect.width - 10 + "px";
+                rangeValue = 50;
+            }
+            sliderFill.style.width = that.style.left;
+            textPreview.style.fontSize = rangeValue + "px";
+            console.log("rangeValue: ", rangeValue);
+        };
+
+
+        document.ontouchend = function (ev) {
+            document.ontouchend = null;
+            document.ontouchmove = null;
         }
-        sliderFill.style.width = that.style.left;
-        textPreview.style.fontSize = rangeValue + "px";
-        console.log("rangeValue: ", rangeValue);
     };
 
+}
 
-    document.onmouseup = function (ev) {
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
-};
 
 /**
  * 发送弹幕按钮点击事件响应函数
@@ -275,9 +331,10 @@ function addBarrageData() {
     item["textSize"] = rangeValue;
     item["road"] = Math.floor(Math.random() * barrageRoad.length);
 
-    content_1 = content_1.replace(/<.*?>.*?<\/.*?>/g, '[非法字段]');
-    content_1 = content_1.replace(/<img/g, '[非法字段]');
-    content_1 = content_1.replace(/<script/g, '[非法字段]');
+    // content_1 = content_1.replace(/<.*?>.*?<\/.*?>/g, '[非法字段]');
+    // content_1 = content_1.replace(/<img/g, '[非法字段]');
+    // content_1 = content_1.replace(/<script/g, '[非法字段]');
+    content_1 = contentFilter();
     item["content"] = content_1;
     console.log("content: ", content_1);
 
@@ -324,11 +381,11 @@ document.onclick = function (e) {
  * 举报弹幕响应函数
  * @param id
  */
-function report(id) {
+function report() {
 
     $.messager.show({
         title: "提示消息",
-        msg: "举报成功",
+        msg: "举报成功:"+ I,
         timeout: 5000
     });
 }
@@ -343,7 +400,7 @@ function saveBarrage() {
         dataType: "json",
         data: {
             "barrageSenderId": 1,
-            "content": content.value,
+            "content": contentFilter(),
             "speed":speedNum.value,
             "color":function () {
                 for (var i = 0;i<color.length;i++){
@@ -377,6 +434,7 @@ function regularGetBarrage() {
         dataType: "json",
         complete: function (ev) {
             if (ev.status == 200) {
+                // console.log("regular", ev.responseText);
                 var data = JSON.parse(ev.responseText);
                 barrageData_2 = barrageData_2.concat(data["resultData"]["barrageInfoPage"]["content"]);
                 console.log("regular", barrageData_2);
@@ -431,5 +489,33 @@ function whichTransitionEvent() {
         if (el.style[t] !== undefined) {
             return transitions[t];
         }
+    }
+}
+
+/**
+ * 输入内容过滤
+ */
+function contentFilter() {
+    var content_1 = content.value;
+    content_1 = content_1.replace(/<.*?>.*?<\/.*?>/g, '[非法字段]');
+    content_1 = content_1.replace(/<img/g, '[非法字段]');
+    content_1 = content_1.replace(/<script/g, '[非法字段]');
+
+    return content_1;
+}
+
+/**
+ *判断是否为移动端
+ */
+function goPAGE() {
+    if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+        /*window.location.href="你的手机版地址";*/
+        // deviceType = "mobile";
+        return "mobile";
+    }
+    else {
+        /*window.location.href="你的电脑版地址";    */
+        // deviceType = "pc";
+        return "pc";
     }
 }
