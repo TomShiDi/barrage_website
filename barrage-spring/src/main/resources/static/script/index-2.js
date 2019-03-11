@@ -25,6 +25,8 @@ var colorSelected = "white";//被选择颜色 预设值
 
 var transitionEvent = whichTransitionEvent();//判断浏览器内核类型
 
+// var menuItem = document.getElementsByClassName("menu-item")[0].onclick = report(20);//TODO
+
 var index = 1;//数据库弹幕表分页页码
 
 var I = 0;
@@ -51,93 +53,15 @@ sliderHandle.style.left = "0px";
  */
 var barrageData_2 = [
     {
+        "barrageId": 1,
         "content": "第二条弹幕.............",
         "color": "red",
         "speed": 16,
         "textSize": 20,
         "road": 0,
         "starNum":0
-    },
-    {
-        "content": "第一条弹幕.............",
-        "color": "green",
-        "speed": 10,
-        "textSize": 20,
-        "road": 0,
-        "starNum":0
-    },
-    {
-        "content": "第三条弹幕.............",
-        "color": "green",
-        "speed": 12,
-        "textSize": 20,
-        "road": 0,
-        "starNum":0
-    },
-    {
-        "content": "第四条弹幕.............",
-        "color": "green",
-        "speed": 10,
-        "textSize": 20,
-        "road": 0,
-        "starNum":0
-    },
-    {
-        "content": "第五条弹幕.............",
-        "color": "white",
-        "speed": 8,
-        "textSize": 20,
-        "road": 0,
-        "starNum":0
-    },
-    {
-        "content": "第六条弹幕.............",
-        "color": "red",
-        "speed": 8,
-        "textSize": 20,
-        "road": 0,
-        "starNum":0
-    },
-    {
-        "content": "第七条弹幕.............",
-        "color": "green",
-        "speed": 6,
-        "textSize": 20,
-        "road": 0,
-        "starNum":0
-    },
-    {
-        "content": "第八条弹幕.............",
-        "color": "black",
-        "speed": 10,
-        "textSize": 20,
-        "road": 0,
-        "starNum":0
-    },
-    {
-        "content": "第九条弹幕.............",
-        "color": "black",
-        "speed": 14,
-        "textSize": 20,
-        "road": 0,
-        "starNum":0
-    },
-    {
-        "content": "随机弹幕.............",
-        "color": "black",
-        "speed": 8,
-        "textSize": 20,
-        "road": 0,
-        "starNum":0
-    },
-    {
-        "content": "随机弹幕.............",
-        "color": "red",
-        "speed": 5,
-        "textSize": 20,
-        "road": 0,
-        "starNum":0
     }
+
 ];
 
 // var barrageData_2 = new BarrageData_2();
@@ -166,7 +90,7 @@ barrageData_2 = barrageData_2.concat();
         // barrageData_2[i]["road"] = Math.floor(Math.random() * barrageRoad.length);
         barrageData_2[i]["road"] = i % barrageRoad.length;
     }
-    // console.log(barrageData_2);
+    console.log("screen-size", screen.width, screen.height);
     var that = this;
     var timer = setInterval(function (args) {
         if (barrageData_2.length <= 0) {
@@ -175,7 +99,7 @@ barrageData_2 = barrageData_2.concat();
             regularGetBarrage();
             return;
         }
-        sendBarrage(0, barrageData_2[0]["content"], barrageData_2[0]["color"], barrageData_2[0]["speed"], barrageData_2[0]["textSize"], barrageData_2[0]["road"]);
+        sendBarrage(barrageData_2[0]["barrageId"], barrageData_2[0]["content"], barrageData_2[0]["color"], barrageData_2[0]["speed"], barrageData_2[0]["textSize"], barrageData_2[0]["road"]);
         // console.log("barrageData: ", barrageData_2);
         barrageData_2.splice(0, 1);
     }, 1000);
@@ -205,6 +129,10 @@ function onMouseLeave(event) {
     barrage.classList.add("barrage-active");
 }
 
+/**
+ * 弹幕点击事件
+ * @param event
+ */
 function mouseClicked(event) {
     var barrage = event.valueOf();
     barrage.classList.add("barrage-clicked");
@@ -213,7 +141,7 @@ function mouseClicked(event) {
     // for (var i =0;i<barrage.childNodes.length;i++){
     //     console.log(i, barrage.childNodes[i]);
     // }
-
+    star(barrage);
 }
 
 
@@ -226,7 +154,7 @@ function mouseClicked(event) {
  * @param rangeValue 字体大小
  * @param roadNum 弹道
  */
-function sendBarrage(index, content, colorSelected, speedNum, rangeValue, roadNum) {
+function sendBarrage(barrageId, content, colorSelected, speedNum, rangeValue, roadNum) {
     // var randomRoadNum = Math.floor(Math.random() * barrageRoad.length);
 
     var newBarrage = document.createElement("span");
@@ -250,7 +178,7 @@ function sendBarrage(index, content, colorSelected, speedNum, rangeValue, roadNu
     // setProperty("transition", "left " + speedNum + "s linear .2s;");
     newBarrage.style.setProperty("font-size", rangeValue + "px");
     newBarrage.innerHTML = content + "<img src='pic/star.png' class='star-img' alt=''>" +
-        "                    <span class='star-num-text'>"+barrageData_2[0]["starNum"]+"</span>";
+        "                    <span class='star-num-text'>"+barrageData_2[0]["starNum"]+"</span><input type='text' hidden value="+barrageId+">";
     // console.log("num:", barrageData_2[0]["starNum"]);
     newBarrage.onmouseenter = function (ev) {
         onMouseIn(this);
@@ -382,7 +310,10 @@ function addBarrageData() {
 //
 //     // return false;
 // }
-
+/**
+ * 全局点击事件重写
+ * @param e
+ */
 document.onclick = function (e) {
     var ul = document.getElementsByClassName("right-menu-ul")[0];
 
@@ -402,6 +333,9 @@ function report(id) {
     });
 }
 
+/**
+ * 发送的弹幕发送至服务器
+ */
 function saveBarrage() {
     $.ajax({
         url: "/barrage/save",
@@ -433,6 +367,9 @@ function saveBarrage() {
     });
 }
 
+/**
+ * 后台弹幕数据拉取函数
+ */
 function regularGetBarrage() {
     $.ajax({
         url: "/barrage/getData?index=" + index,
@@ -451,6 +388,31 @@ function regularGetBarrage() {
         }
     });
 }
+
+/**
+ * 弹幕点赞处理函数
+ * @param option
+ */
+function star(option) {
+    var barrageId = option.childNodes[4].value;
+    // console.log("star", option.childNodes);
+    $.ajax({
+        type: "get",
+        dataType: "json",
+        url: "/barrage/star?barrageId=" + barrageId,
+        complete: function (ev) {
+            if (ev.status == 200) {
+                $.messager.show({
+                    title: "系统提示",
+                    msg: "点赞成功",
+                    timeout: 3000
+                });
+                console.log(ev.responseText);
+            }
+        }
+    });
+}
+
 /**
  * 浏览器内核判断函数
  * @returns {*}

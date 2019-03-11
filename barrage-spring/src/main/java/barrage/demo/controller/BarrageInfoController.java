@@ -77,4 +77,15 @@ public class BarrageInfoController {
         }
     }
 
+    @GetMapping("/star")
+    public BarrageDao starBarrage(@RequestParam(name = "barrageId") Integer barrageId) {
+        BarrageInfo barrageInfo = barrageInfoService.findByBarrageId(barrageId);
+        barrageInfo.setStarNum(barrageInfo.getStarNum() + 1);
+        barrageInfoService.saveBarrageInfo(barrageInfo);
+
+        BarrageDao barrageDao = new BarrageDao();
+        barrageDao.setMessage("success");
+        return barrageDao;
+    }
+
 }
