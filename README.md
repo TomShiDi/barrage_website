@@ -9,11 +9,13 @@
 + 后端:
  + **springboot2.0** **mysql** **JpaRepository** **freemarker** 
 
-+ 存在的问题:
+## 设备支持情况
++  手机端支持（横屏）
++  pc端完全支持(搜狗浏览器,谷歌浏览器,IE浏览器)
+## 存在的问题:
  + 功能单一
- + 暂时只支持pc端
- + 手机端某些浏览器无法实现全部功能
- + 浏览器兼容性(js加密后): 搜狗浏览器无法正常访问
+ + 手机端部分功能暂时没做兼容(正在改进)
+ 
 
 ## 演示地址(https也可以)  [http://selltom.mynatapp.cc/index-2.html](https://selltom.mynatapp.cc/index-2.html "演示地址")
 
