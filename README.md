@@ -19,3 +19,5 @@
 
 ## 演示地址(https也可以)  [http://selltom.mynatapp.cc/index-2.html](https://selltom.mynatapp.cc/index-2.html "演示地址")
 
+## 演示地址可能没有开放
+

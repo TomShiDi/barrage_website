@@ -33,18 +33,6 @@ var I = 0;//右键弹幕的id
 sliderHandle.style.left = "0px";
 
 
-// class BarrageData_2 extends Array{
-    // constructor() {
-    //     super();
-    // }
-    //
-    //
-    // push(...args){
-    //     super.push(...args);
-    //     console.log("push: ", args);
-    //     return this.length;
-    // }
-// }
 
 
 /**
@@ -64,7 +52,6 @@ var barrageData_2 = [
 
 ];
 
-// var barrageData_2 = new BarrageData_2();
 
 barrageData_2 = barrageData_2.concat();
 /**
@@ -87,20 +74,17 @@ barrageData_2 = barrageData_2.concat();
  */
 (function () {
     for (var i = 0; i < barrageData_2.length; i++) {
-        // barrageData_2[i]["road"] = Math.floor(Math.random() * barrageRoad.length);
         barrageData_2[i]["road"] = i % barrageRoad.length;
     }
     console.log("screen-size", screen.width, screen.height);
     var that = this;
     var timer = setInterval(function (args) {
         if (barrageData_2.length <= 0) {
-            // that.clearInterval(timer);
             console.log("barrageData:", barrageData_2);
             regularGetBarrage();
             return;
         }
         sendBarrage(barrageData_2[0]["barrageId"], barrageData_2[0]["content"], barrageData_2[0]["color"], barrageData_2[0]["speed"], barrageData_2[0]["textSize"], barrageData_2[0]["road"]);
-        // console.log("barrageData: ", barrageData_2);
         barrageData_2.splice(0, 1);
     }, 1000);
 
@@ -109,7 +93,7 @@ barrageData_2 = barrageData_2.concat();
 
 
 window.onload = function (ev) {
-    document.getElementsByClassName("menu-item")[0].onclick = report();//TODO
+    document.getElementsByClassName("menu-item")[0].onclick = report;//TODO
 }
 
 /**
@@ -117,7 +101,6 @@ window.onload = function (ev) {
  * @param event
  */
 function onMouseIn(event) {
-    // console.log(event);
     var barrage = event.valueOf();
     var computeStyle = window.getComputedStyle(barrage), left = computeStyle.getPropertyValue("left");
     barrage.style.left = left;
@@ -129,7 +112,6 @@ function onMouseIn(event) {
  * @param event
  */
 function onMouseLeave(event) {
-    // console.log(event);
     var barrage = event.valueOf();
     barrage.classList.add("barrage-active");
 }
@@ -143,9 +125,7 @@ function mouseClicked(event) {
     barrage.classList.add("barrage-clicked");
     barrage.childNodes[1].setAttribute("src", "/pic/star-active.png");
     barrage.childNodes[3].innerHTML = parseInt(barrage.childNodes[3].innerHTML) + 1;
-    // for (var i =0;i<barrage.childNodes.length;i++){
-    //     console.log(i, barrage.childNodes[i]);
-    // }
+
     star(barrage);
 }
 
@@ -160,31 +140,20 @@ function mouseClicked(event) {
  * @param roadNum 弹道
  */
 function sendBarrage(barrageId, content, colorSelected, speedNum, rangeValue, roadNum) {
-    // var randomRoadNum = Math.floor(Math.random() * barrageRoad.length);
 
     var newBarrage = document.createElement("span");
 
     if (content === "") {
         return;
     }
-    // for (var i = 0;i<color.length;i++){
-    //     if (color[i].checked) {
-    //         colorSelected = color[i].value;
-    //     }
-    // }
+
     newBarrage.classList.add("barrage");
-    // newBarrage.styleSheet.removeRule(11);
     newBarrage.style.setProperty("color", colorSelected);
-    // newBarrage.style.transition = "transition left " + speedNum + "s linear .2s";
     newBarrage.style.transitionDuration = speedNum + "s";
     newBarrage.style.webkitTransitionDuration = speedNum + "s";
-
-    // newBarrage.style.webkitTransition = "-webkit-transition left " + speedNum + "s linear .2s";
-    // setProperty("transition", "left " + speedNum + "s linear .2s;");
     newBarrage.style.setProperty("font-size", rangeValue + "px");
     newBarrage.innerHTML = content + "<img src='pic/star.png' class='star-img' alt=''>" +
         "                    <span class='star-num-text'>"+barrageData_2[0]["starNum"]+"</span><input type='text' hidden value="+barrageId+">";
-    // console.log("num:", barrageData_2[0]["starNum"]);
     newBarrage.onmouseenter = function (ev) {
         onMouseIn(this);
     };
@@ -209,9 +178,10 @@ function sendBarrage(barrageId, content, colorSelected, speedNum, rangeValue, ro
 
     newBarrage.oncontextmenu = function (ev) {
         var ul = document.getElementsByClassName("right-menu-ul")[0];
-        // console.log("右键事件", this.childNodes);
+        // console.log("contextmenu", ev.currentTarget.valueOf().childNodes);
         event.preventDefault();
-        I = index;
+        //TODO 奇迹的用法
+        I = barrageId;
         ul.style.display = "block";
         ul.style.left = event.clientX + 10 + "px";
         ul.style.top = event.clientY + 10 + "px";
@@ -244,8 +214,6 @@ if (deviceType === "pc"){
         var oldX = event.clientX;
         var left = parseInt(that.style.left);
 
-
-        // console.log("mousedown  ", sliderHandle);
         document.onmousemove = function (ev) {
             var x = ev.clientX - oldX;
 
@@ -279,8 +247,6 @@ if (deviceType === "pc"){
         var oldX = event.clientX;
         var left = parseInt(that.style.left);
 
-
-        // console.log("mousedown  ", sliderHandle);
         document.ontouchmove = function (ev) {
             var x = ev.clientX - oldX;
 
@@ -331,9 +297,7 @@ function addBarrageData() {
     item["textSize"] = rangeValue;
     item["road"] = Math.floor(Math.random() * barrageRoad.length);
 
-    // content_1 = content_1.replace(/<.*?>.*?<\/.*?>/g, '[非法字段]');
-    // content_1 = content_1.replace(/<img/g, '[非法字段]');
-    // content_1 = content_1.replace(/<script/g, '[非法字段]');
+
     content_1 = contentFilter();
     item["content"] = content_1;
     console.log("content: ", content_1);
@@ -382,6 +346,29 @@ document.onclick = function (e) {
  * @param id
  */
 function report() {
+
+    // $.ajax({
+    //     url: "/barrage/save",
+    //     type: "post",
+    //     dataType: "json",
+    //     data: {
+    //         "barrageSenderId": 1,
+    //         "content": contentFilter(),
+    //         "speed": speedNum.value,
+    //         "color": function () {
+    //             for (var i = 0; i < color.length; i++) {
+    //                 if (color[i].checked) {
+    //                     return color[i].value;
+    //                 }
+    //             }
+    //         },
+    //         "textSize": rangeValue,
+    //         "road": Math.floor(Math.random() * barrageRoad.length)
+    //     },
+    //     complete: function (ev) {
+    //
+    //     }
+    // });
 
     $.messager.show({
         title: "提示消息",
