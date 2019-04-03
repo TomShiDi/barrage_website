@@ -401,7 +401,7 @@ a:focus, a:hover {
         flex-wrap: wrap;
         /*align-items: center;*/
         justify-content: center;
-        margin-left: 70px;
+        margin-left: calc(3.6vw);
         width: calc(100vw);
         height: calc(100vh);
     }
