@@ -17,14 +17,15 @@
  + 手机端请横屏使用
  
 
-## 演示地址(https也可以)  [http://selltom.mynatapp.cc/index-2.html](https://selltom.mynatapp.cc/index-2.html "演示地址") 最近在增加功能，访问请使用[https://120.77.222.242/index](https://120.77.222.242/index)
+## 演示地址(https也可以)  [http://selltom.mynatapp.cc/index-2.html](https://selltom.mynatapp.cc/index-2.html "演示地址") 因新增的聊天室功能需要证书，访问请使用[https://120.77.222.242/index](https://120.77.222.242/index)
 
 
 
 ## 演示地址全天开放
+![](https://i.imgur.com/r9lk7o8.gif)
 
 ## 新增功能
 + **百度网盘资源搜索** ![](https://i.imgur.com/5BZEjYI.png)
-+ **B站视频评论提取** 
-+ **新增聊天室功能**
++ **B站视频评论提取** ![](https://i.imgur.com/g1dcymU.png)
++ **新增聊天室功能** ![](https://i.imgur.com/zhQ0w3y.png)
 

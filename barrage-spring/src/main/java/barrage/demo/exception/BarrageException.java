@@ -18,4 +18,12 @@ public class BarrageException extends RuntimeException {
         super(barrageExceptionEnum.getMessage());
         this.code = barrageExceptionEnum.getCode();
     }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
 }

@@ -26,7 +26,7 @@ html,body {
 .search-tool {
     position: relative;
     top: 3%;
-    width: 100%;
+    width: 80%;
     height: 8%;
     display: -webkit-flex;
     display: flex;
@@ -54,7 +54,7 @@ html,body {
     }
 
     .search-button-area{
-        width: 15%;
+        width: 12%;
         height: 50%;
     }
 
@@ -82,7 +82,7 @@ html,body {
         align-content: stretch;
         flex-wrap: wrap;
         height: 70%;
-        width: 100%;
+        width: 80%;
         margin: 0 1% 0 1%;
     }
 
@@ -227,7 +227,7 @@ html,body {
         align-content: stretch;
         flex-wrap: wrap;
         height: 70%;
-        width: 100%;
+        width: 80%;
         margin: 0 1% 0 1%;
     }
 

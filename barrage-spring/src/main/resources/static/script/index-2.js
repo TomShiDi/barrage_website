@@ -151,7 +151,7 @@ function sendBarrage(barrageId, content, colorSelected, speedNum, rangeValue, ro
     newBarrage.style.setProperty("color", colorSelected);
     newBarrage.style.transitionDuration = speedNum + "s";
     newBarrage.style.webkitTransitionDuration = speedNum + "s";
-    newBarrage.style.setProperty("font-size", rangeValue + "px");
+    newBarrage.style.setProperty("font-size", rangeValue * 0.55 + "px");
     newBarrage.innerHTML = content + "<img src='pic/star.png' class='star-img' alt=''>" +
         "                    <span class='star-num-text'>"+barrageData_2[0]["starNum"]+"</span><input type='text' hidden value="+barrageId+">";
     newBarrage.onmouseenter = function (ev) {

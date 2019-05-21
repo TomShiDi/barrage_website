@@ -1,0 +1,27 @@
+
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  datasource:
+    url: jdbc:mysql://localhost/barrage_site?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 15576123138
+    driver-class-name: com.mysql.cj.jdbc.Driver
+server:
+  port: 8080
+  servlet:
+    context-path:
+
+
+
+bilibiliApiUrl: https://api.bilibili.com/x/v2/reply
+
+filePath: /usr/bilibiliComment
+
+allowedOrigin: https://selltom.mynatapp.cc
+
+ipRecordFilePath: /usr/barrage-site-visitor.txt
