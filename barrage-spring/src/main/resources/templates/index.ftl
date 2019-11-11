@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
 
     <meta http-equiv="X-UA-Compatible" content=="IE=edge"/>
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <#--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>-------------</title>
     <link type="text/css" href="/script/jquery-easyui-1.7.5/themes/icon.css" rel="stylesheet">
@@ -12,11 +12,14 @@
     <script type="text/javascript" src="/script/jquery.min.js"></script>
     <script type="text/javascript" src="/script/jquery-easyui-1.7.5/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="/script/jquery-easyui-1.7.5/locale/easyui-lang-zh_CN.js"></script>
-    <link type="text/css" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
-          rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/css/style.css?t=1.2.4">
+    <script src="https://use.fontawesome.com/06dae4fa6e.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/style.css?t=1.2.6">
 </head>
 <body>
+<script src="/script/three.min.js"></script>
+<script src="/script/canvas-index.js"></script>
+<canvas width="1920" height="1007" style="position: absolute; top: 0;"></canvas>
 <nav class="side-menu">
     <div class="settings">
         <img class="head-icon" src="pic/head-icon-1.jpg" />
@@ -46,7 +49,7 @@
 
             <li>
                 <a href="socket.html">
-                    <i class="fa fa-commenting fa-lg"></i>
+                    <i class="fa fa-comments fa-lg"></i>
                     <span class="nav-text">聊天室</span>
                 </a>
             </li>
@@ -90,13 +93,14 @@
 </nav>
 <div class="barrage-box">
     <div class="barrage-content">
-        <!--<canvas id="canvas-1"></canvas>-->
         <div class="barrage-road">
                 <span class="barrage">
-                    测试弹幕.....
-                    <!--<input class="starButton" type="button" value="">-->
-                    <img src="pic/star-active.png" class="star-img" alt="">
-                    <span class="star-num-text">0</span>
+                    <img src="pic/huaji.jpg" rel="icon" class="barrage-head-img" alt="" />
+                    <div class="barrage-info-area">
+                        测试弹幕.....
+                        <img src="pic/star-active.png" class="star-img" alt="">
+                        <span class="star-num-text">0</span>
+                    </div>
                 </span>
         </div>
         <div class="barrage-road">
@@ -170,7 +174,7 @@
     <img src="pic/phone-reverse.gif">
     <span>请解除手机屏幕锁定，并将手机横屏放置</span>
 </div>
-<script type="text/javascript" src="script/index-2-pro.js?t=1.1.0"></script>
+<script type="text/javascript" src="script/index-2-pro.js?t=1.1.3"></script>
 <ul class="right-menu-ul" style="display: none">
     <li class="menu-item">举报当前弹幕</li>
 </ul>

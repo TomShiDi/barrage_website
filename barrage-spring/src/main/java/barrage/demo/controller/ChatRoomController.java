@@ -15,6 +15,11 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 @RequestMapping("/chat")
 public class ChatRoomController {
 
+    /**
+     * 用户注册nickname，只是简单的验证然后将nickname加到response的cookie中，失效时间是1小时
+     * @param nickName
+     * @return
+     */
     @GetMapping("/register")
     public String register(@RequestParam(name = "nickName") String nickName) {
         Gson gson = new Gson();
@@ -23,7 +28,7 @@ public class ChatRoomController {
         return gson.toJson(new ChatRoomDao()
                 .message("success")
                 .code(ChatRoomEnum.SUCCESS.getCode())
-                .confirmNickName(nickName));
+                .confirmNickName(nickName));//返回处理结果
     }
 
 }

@@ -31,3 +31,7 @@ allowedOrigin: https://selltom.mynatapp.cc
 ipRecordFilePath: D://barrage-site-visitor.txt
 
 defaultScannedPackage: barrage.demo
+
+
+#mybatis:
+#  mapper-locations: classpath:barrage/demo/mapper/barrage_info.xml

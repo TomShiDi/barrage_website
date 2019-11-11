@@ -25,3 +25,4 @@ filePath: /usr/bilibiliComment
 allowedOrigin: https://selltom.mynatapp.cc
 
 ipRecordFilePath: /usr/barrage-site-visitor.txt
+#ipRecordFilePath: D://barrage-site-visitor.txt

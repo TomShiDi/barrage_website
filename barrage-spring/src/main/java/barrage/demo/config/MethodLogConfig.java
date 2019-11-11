@@ -1,17 +1,11 @@
 package barrage.demo.config;
 
-import barrage.demo.methodLog.*;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.Scope;
-
-import java.util.Set;
-
-@Configuration
-@PropertySource({"classpath:application.yml"})
-@EnableMethodLog(scannedPkgName = "barrage.demo")
+/**
+ * @Author TomShiDi
+ */
+//@Configuration
+//@PropertySource({"classpath:application.yml"})
+//@EnableMethodLog(scannedPkgName = "barrage.demo.methodlog")
 public class MethodLogConfig {
 
 //    @Value("${defaultScannedPackage}")

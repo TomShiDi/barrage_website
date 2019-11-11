@@ -26,4 +26,12 @@ public class UseridToLoginname {
     public void setLoginName(String loginName) {
         this.loginName = loginName;
     }
+
+    @Override
+    public String toString() {
+        return "UseridToLoginname{" +
+                "userId=" + userId +
+                ", loginName='" + loginName + '\'' +
+                '}';
+    }
 }

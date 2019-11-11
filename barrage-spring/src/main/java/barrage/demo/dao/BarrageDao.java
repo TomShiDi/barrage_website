@@ -2,11 +2,14 @@ package barrage.demo.dao;
 
 import java.util.Map;
 
+/**
+ * @Author TomShiDi
+ */
 public class BarrageDao {
 
-    String message;
+    private String message;
 
-    Map<String, Object> resultData;
+    private Map<String, Object> resultData;
 
     public String getMessage() {
         return message;

@@ -124,11 +124,6 @@ body,html {
     1px 0 2px #c3c3c3,
     0 1px 2px #c3c3c3;
     border-radius: 30px;
-    /*animation-name: message-item-move;*/
-    /*animation-duration: 0.5s;*/
-    /*animation-timing-function: cubic-bezier(0.4, -0.04, 1, 1);*/
-    /*transition: margin-bottom linear 0.5s;*/
-    /*-webkit-transition: margin-bottom linear 0.5s;*/
 }
 
 .message-content.mine:after{
@@ -162,11 +157,6 @@ body,html {
     1px 0 2px #c3c3c3,
     0 1px 2px #c3c3c3;
     border-radius: 30px;
-    /*animation-name: message-item-move;*/
-    /*animation-duration: 0.5s;*/
-    /*animation-timing-function: cubic-bezier(0.4, -0.04, 1, 1);*/
-    /*transition: margin-bottom linear 0.5s;*/
-    /*-webkit-transition: margin-bottom linear 0.5s;*/
 }
 
 
@@ -195,20 +185,13 @@ body,html {
                 0 -1px 2px #c3c3c3,
                 1px 0 2px #c3c3c3,
                 0 1px 2px #c3c3c3;
-    /*text-align: center;*/
 }
 
 .input-message {
-    /*display: flex;*/
-    /*display: -webkit-flex;*/
-    /*justify-content: center;*/
-    /*align-items: center;*/
     float: left;
     margin-left: 2%;
     width: 68%;
     height: 100%;
-    /*text-align: center;*/
-    /*border: #00e100 solid;*/
 }
 
 .input-field {
@@ -227,28 +210,13 @@ body,html {
     /*border: #00e100 solid;*/
 }
 
-/*.fa-space-shuttle{*/
-    /*display: table-cell;*/
-    /*vertical-align: middle;*/
-    /*!*text-align: center;*!*/
-    /*margin-left: 5%;*/
-/*}*/
 
-/*.fa-smile-o{*/
-    /*display: table-cell;*/
-    /*vertical-align: middle;*/
-    /*!*text-align: center;*!*/
-/*}*/
 
 .emoji-icon{
-    /*width: 30px;*/
-    /*right: 15%;*/
-    /*top: 17%;*/
-    /*position: absolute;*/
+
     display: table-cell;
     vertical-align: middle;
-    /*cursor: pointer;*/
-    /*text-align: center;*/
+
 }
 
 i{
@@ -256,15 +224,8 @@ i{
 }
 
 .send-button-area{
-    /*width: 30px;*/
-    /*position: absolute;*/
-    /*right: 1%;*/
-    /*top: 17%;*/
     display: table-cell;
     vertical-align: middle;
-    /*cursor: pointer;*/
-    /*text-align: center;*/
-    /*margin-left: 5%;*/
 }
 
 .signWindow {

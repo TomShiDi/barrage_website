@@ -1,4 +1,4 @@
-package barrage.demo.methodLog;
+package barrage.demo.methodlog;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -10,7 +10,7 @@ var barrageContent = document.getElementsByClassName("barrage-content")[0];
 var barrageRoad = document.getElementsByClassName("barrage-road");
 
 
-var rangeValue = 20;//字体大小 预设值
+var rangeValue = 16;//字体大小 预设值
 
 var sliderHandle = document.getElementsByClassName("range-slider-handle")[0];//字体调节滑块
 var slider = document.getElementsByClassName("range-slider")[0];
@@ -33,8 +33,6 @@ var I = 0;//右键弹幕的id
 sliderHandle.style.left = "0px";
 
 
-
-
 /**
  * 测试用数据 数据格式
  * @type {*[]}
@@ -47,7 +45,7 @@ var barrageData_2 = [
         "speed": 16,
         "textSize": 20,
         "road": 0,
-        "starNum":0
+        "starNum": 0
     }
 
 ];
@@ -122,11 +120,25 @@ function onMouseLeave(event) {
  */
 function mouseClicked(event) {
     var barrage = event.valueOf();
-    barrage.classList.add("barrage-clicked");
-    barrage.childNodes[1].setAttribute("src", "/pic/star-active.png");
-    barrage.childNodes[3].innerHTML = parseInt(barrage.childNodes[3].innerHTML) + 1;
+    var barrageInfoArea = barrage.childNodes[1];
+    console.log("childList", barrageInfoArea.childNodes);
+    // barrage.classList.add("barrage-clicked");
+    // barrage.childNodes[1].setAttribute("src", "/pic/star-active.png");
+    // barrage.childNodes[3].innerHTML = parseInt(barrage.childNodes[3].innerHTML) + 1;
 
-    star(barrage);
+    if(barrageInfoArea.classList.contains("barrage-info-area-clicked"))
+    {
+        barrageInfoArea.classList.remove("barrage-info-area-clicked");
+        barrageInfoArea.childNodes[1].setAttribute("src", "/pic/star.png");
+        barrageInfoArea.childNodes[3].innerHTML = parseInt(barrageInfoArea.childNodes[3].innerHTML) - 1;
+        unstar(barrageInfoArea);
+    }else{
+        barrageInfoArea.classList.add("barrage-info-area-clicked");
+        barrageInfoArea.childNodes[1].setAttribute("src", "/pic/star-active.png");
+        barrageInfoArea.childNodes[3].innerHTML = parseInt(barrageInfoArea.childNodes[3].innerHTML) + 1;
+        star(barrageInfoArea);
+    }
+
 }
 
 
@@ -143,24 +155,35 @@ function sendBarrage(barrageId, content, colorSelected, speedNum, rangeValue, ro
 
     var newBarrage = document.createElement("span");
 
+    var newBarrageInfoArea = document.createElement("div");
+
     if (content === "") {
         return;
     }
 
     newBarrage.classList.add("barrage");
-    newBarrage.style.setProperty("color", colorSelected);
     newBarrage.style.transitionDuration = speedNum + "s";
     newBarrage.style.webkitTransitionDuration = speedNum + "s";
-    newBarrage.style.setProperty("font-size", rangeValue * 0.55 + "px");
-    newBarrage.innerHTML = content + "<img src='pic/star.png' class='star-img' alt=''>" +
-        "                    <span class='star-num-text'>"+barrageData_2[0]["starNum"]+"</span><input type='text' hidden value="+barrageId+">";
+    // newBarrage.style.setProperty("color", colorSelected);
+    // newBarrage.style.setProperty("font-size", rangeValue * 0.80 + "px");
+    // newBarrage.innerHTML = content + "<img src='pic/star.png' class='star-img' alt=''>" +
+    //         "                    <span class='star-num-text'>"+barrageData_2[0]["starNum"]+"</span><input type='text' hidden value="+barrageId+">";
+
+    newBarrageInfoArea.classList.add("barrage-info-area");
+    newBarrageInfoArea.style.setProperty("color", colorSelected);
+    newBarrageInfoArea.style.setProperty("font-size", rangeValue * 0.80 + "px");
+    newBarrageInfoArea.innerHTML = content + "<img src='pic/star.png' class='star-img' alt=''>" +
+        "                    <span class='star-num-text'>" + barrageData_2[0]["starNum"] + "</span><input type='text' hidden value=" + barrageId + ">";
+    newBarrage.innerHTML = "<img src=\"pic/huaji.jpg\" rel=\"icon\" class=\"barrage-head-img\" alt=\"\" />";
+
+    newBarrage.appendChild(newBarrageInfoArea);
     newBarrage.onmouseenter = function (ev) {
         onMouseIn(this);
     };
     newBarrage.onmouseleave = function (ev) {
         onMouseLeave(this);
     };
-    if (deviceType === "pc"){
+    if (deviceType === "pc") {
         newBarrage.onclick = function (ev) {
             var ul = document.getElementsByClassName("right-menu-ul")[0];
 
@@ -180,7 +203,7 @@ function sendBarrage(barrageId, content, colorSelected, speedNum, rangeValue, ro
         var ul = document.getElementsByClassName("right-menu-ul")[0];
         // console.log("contextmenu", ev.currentTarget.valueOf().childNodes);
         event.preventDefault();
-        //TODO 奇迹的用法
+        //TODO
         I = barrageId;
         ul.style.display = "block";
         ul.style.left = event.clientX + 10 + "px";
@@ -192,7 +215,7 @@ function sendBarrage(barrageId, content, colorSelected, speedNum, rangeValue, ro
 
     setTimeout(function () {
         newBarrage.classList.add("barrage-active");
-    },50);
+    }, 50);
 
 
     newBarrage.addEventListener(transitionEvent, function (evt) {
@@ -208,7 +231,7 @@ function sendBarrage(barrageId, content, colorSelected, speedNum, rangeValue, ro
  * 滑块鼠标按下事件函数
  * @param event
  */
-if (deviceType === "pc"){
+if (deviceType === "pc") {
     sliderHandle.onmousedown = function (event) {
         var that = this;
         var oldX = event.clientX;
@@ -224,11 +247,11 @@ if (deviceType === "pc"){
 
             if (parseInt(that.style.left) < 0) {
                 that.style.left = "0";
-                rangeValue = 10;
+                rangeValue = 16;
             }
             if (parseInt(that.style.left) > sliderRect.width) {
                 that.style.left = sliderRect.width - 10 + "px";
-                rangeValue = 50;
+                rangeValue = 40;
             }
             sliderFill.style.width = that.style.left;
             textPreview.style.fontSize = rangeValue + "px";
@@ -302,7 +325,7 @@ function addBarrageData() {
     item["content"] = content_1;
     console.log("content: ", content_1);
 
-    for (var i = 0;i<color.length;i++) {
+    for (var i = 0; i < color.length; i++) {
         if (color[i].checked) {
             item["color"] = color[i].value;
             break;
@@ -372,7 +395,7 @@ function report() {
 
     $.messager.show({
         title: "提示消息",
-        msg: "举报成功:"+ I,
+        msg: "举报成功:" + I,
         timeout: 5000
     });
 }
@@ -388,10 +411,10 @@ function saveBarrage() {
         data: {
             "barrageSenderId": 1,
             "content": contentFilter(),
-            "speed":speedNum.value,
-            "color":function () {
-                for (var i = 0;i<color.length;i++){
-                    if (color[i].checked){
+            "speed": speedNum.value,
+            "color": function () {
+                for (var i = 0; i < color.length; i++) {
+                    if (color[i].checked) {
                         return color[i].value;
                     }
                 }
@@ -399,12 +422,12 @@ function saveBarrage() {
             "textSize": rangeValue,
             "road": Math.floor(Math.random() * barrageRoad.length)
         },
-        complete:function (ev) {
+        complete: function (ev) {
             // console.log(ev);
             content.value = "";
-            if (ev.status === 200){
+            if (ev.status === 200) {
                 console.log(ev.responseText);
-            }else{
+            } else {
                 console.log("error", ev.responseText);
             }
         }
@@ -440,7 +463,7 @@ function regularGetBarrage() {
  */
 function star(option) {
     var barrageId = option.childNodes[4].value;
-    // console.log("star", option.childNodes);
+    // console.log("barrageInfoArea", barrageInfoArea);
     $.ajax({
         type: "get",
         dataType: "json",
@@ -450,6 +473,25 @@ function star(option) {
                 $.messager.show({
                     title: "系统提示",
                     msg: "点赞成功",
+                    timeout: 3000
+                });
+                console.log(ev.responseText);
+            }
+        }
+    });
+}
+
+function unstar(option) {
+    var barrageId = option.childNodes[4].value;
+    $.ajax({
+        type: "get",
+        dataType: "json",
+        url: "/barrage/unstar?barrageId=" + barrageId,
+        complete:function (ev) {
+            if (ev.status == 200){
+                $.messager.show({
+                    title: "系统提示",
+                    msg: "取消点赞成功",
                     timeout: 3000
                 });
                 console.log(ev.responseText);

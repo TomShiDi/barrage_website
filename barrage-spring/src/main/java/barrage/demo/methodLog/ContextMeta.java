@@ -1,4 +1,4 @@
-package barrage.demo.methodLog;
+package barrage.demo.methodlog;
 
 /**
  * the common context interface,every subclass-context should implement this interface

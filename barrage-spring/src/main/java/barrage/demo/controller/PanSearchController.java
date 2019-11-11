@@ -3,7 +3,6 @@ package barrage.demo.controller;
 import barrage.demo.utils.HttpUtil;
 import com.google.gson.Gson;
 
-import freemarker.cache.StrongCacheStorage;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +17,13 @@ import java.net.URLEncoder;
 @RequestMapping("/pan")
 public class PanSearchController {
 
+    /**
+     * 请求网盘服务器获取数据
+     * @param q 查询的关键字
+     * @param p 页码
+     * @return
+     * @throws Exception
+     */
     @ApiOperation(value = "请求其他服务器获取数据", notes = "请求其他服务器获取数据", response = String.class)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "q", value = "搜索字段", defaultValue = "11", paramType = "query", dataTypeClass = String.class),

@@ -4,11 +4,9 @@ import barrage.demo.dao.BarrageDao;
 import barrage.demo.entity.BarrageInfo;
 
 
-import barrage.demo.entity.UserAccountInfo;
 import barrage.demo.enums.BarrageExceptionEnum;
 import barrage.demo.exception.BarrageException;
 import barrage.demo.service.BarrageInfoService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -29,6 +27,7 @@ import java.util.Map;
 public class BarrageInfoController {
 
     private BarrageInfoService barrageInfoService;
+
 
     @Autowired
     public BarrageInfoController(BarrageInfoService barrageInfoService) {
@@ -65,6 +64,12 @@ public class BarrageInfoController {
         return barrageDao;
     }
 
+    /**
+     * 获取指定页的弹幕信息
+     * @param index 页码
+     * @param size 每一页的数量
+     * @return
+     */
     @ApiOperation(value = "获取指定页码数的弹幕数据",  response = BarrageDao.class)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "index", value = "待取弹幕数据的页码", defaultValue = "1", dataTypeClass = Integer.class, paramType = "query"),
@@ -89,6 +94,11 @@ public class BarrageInfoController {
         }
     }
 
+    /**
+     * 弹幕点赞接口
+     * @param barrageId 待点赞弹幕的id
+     * @return
+     */
     @ApiOperation(value = "给指定弹幕点赞", response = BarrageDao.class)
     @ApiImplicitParam(name = "barrageId", value = "弹幕id", required = true, dataTypeClass = Integer.class)
     @GetMapping("/star")
@@ -99,6 +109,19 @@ public class BarrageInfoController {
 
         BarrageDao barrageDao = new BarrageDao();
         barrageDao.setMessage("success");
+        return barrageDao;
+    }
+
+    @ApiOperation(httpMethod = "get", value = "取消点赞", response = BarrageDao.class)
+    @ApiImplicitParam(name = "barrageId", value = "弹幕Id", required = true, dataTypeClass = Integer.class)
+    @GetMapping("/unstar")
+    public BarrageDao unStarBarrage(@RequestParam(name = "barrageId") Integer barrageId) {
+        BarrageInfo barrageInfo = barrageInfoService.findByBarrageId(barrageId);
+        barrageInfo.setStarNum(barrageInfo.getStarNum() - 1);
+        barrageInfoService.saveBarrageInfo(barrageInfo);
+
+        BarrageDao barrageDao = new BarrageDao();
+        barrageDao.setMessage("unstar success");
         return barrageDao;
     }
 

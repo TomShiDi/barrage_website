@@ -1,7 +1,11 @@
-package barrage.demo.methodLog;
+package barrage.demo.methodlog;
 
 import java.lang.annotation.*;
 
+/**
+ * 用于指定需要方法跟踪的类
+ * @Author TomShiDi
+ */
 @Documented
 @Inherited
 @Target({ElementType.TYPE,ElementType.METHOD,ElementType.PARAMETER})

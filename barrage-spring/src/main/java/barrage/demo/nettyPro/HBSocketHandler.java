@@ -16,6 +16,12 @@ public class HBSocketHandler extends SimpleChannelInboundHandler<Object> {
         this.socketFrameService = socketFrameService;
     }
 
+    /**
+     * 当请求到达这一个handler的时候，根据请求的类型执行相应的操作，websocket或者http
+     * @param ctx
+     * @param msg
+     * @throws Exception
+     */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
         if (msg instanceof FullHttpRequest) {

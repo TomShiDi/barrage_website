@@ -21,6 +21,12 @@ public class BIliBiliVideoController {
     private String filePath;
 
 
+    /**
+     * 根据avId请求B站接口获取评论数据，并存入文件，高并发下崩溃率很高
+     * @param avId 视频的id号
+     * @return
+     * @throws Exception
+     */
     @ApiOperation(value = "采集评论信息", notes = "根据视频av号采集评论")
     @ApiImplicitParam(name = "avId", value = "待采集视频id", required = true, dataTypeClass = String.class)
     @GetMapping("/get-comment")
