@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- jdbc配置 -->
+    <classPathEntry location="E:\IntelliJ IDEA 2018.1.1\plugins\maven\repository\mysql\mysql-connector-java\5.1.31\mysql-connector-java-5.1.31.jar" />
+    <context id="MySql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+            <!-- caseSensitive默认false，当数据库表名区分大小写时，可以将该属性设置为true -->
+            <property name="caseSensitive" value="true"/>
+        </plugin>
+
+        <commentGenerator>
+            <property name="suppressAllComments" value="false"/>
+            <property name="suppressDate" value="false"/>
+            <!-- 此处为 true 时，生成的 Model 包含对应表字段注释 -->
+            <property name="addRemarkComments" value="false"/>
+            <!-- 此处为 true 时，生成的 Mapper 接口将增加 @Mapper 注解，Spring ComponentScan 时可自动识别 -->
+            <property name="addMapperAnnotation" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection
+                driverClass="com.mysql.jdbc.Driver"
+                connectionURL="jdbc:mysql://localhost:3306/barrage_site?characterEncoding=UTF-8"
+                userId="root"
+                password="15576123138"
+                />
+        <javaModelGenerator targetPackage="barrage.demo.entity" targetProject="src/main/java" />
+        <sqlMapGenerator targetPackage="barrage.demo.mapper" targetProject="src/main/java" />
+        <javaClientGenerator type="XMLMAPPER" targetPackage="barrage.demo.mapper" targetProject="src/main/java" />
+        <table tableName="department_log_info">
+            <generatedKey column="table_id" sqlStatement="Mysql" />
+        </table>
+    </context>
+</generatorConfiguration>
