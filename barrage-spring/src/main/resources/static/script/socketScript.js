@@ -34,9 +34,9 @@ window.onload = function (ev) {
         var receiveData = JSON.parse(e.data);
         if (receiveData["methodCode"] === refreshCode) {
             refreshOnlineCount(receiveData["onlineCount"]);
-        }else if (receiveData["methodCode"] === messageCode) {
-            receiveMessage(JSON.parse(receiveData["sendingMessage"])["nickName"],JSON.parse(receiveData["sendingMessage"])["message"]);
-        }else if (receiveData["methodCode"] === messageSendingSuccessCode) {
+        } else if (receiveData["methodCode"] === messageCode) {
+            receiveMessage(JSON.parse(receiveData["sendingMessage"])["nickName"], JSON.parse(receiveData["sendingMessage"])["message"]);
+        } else if (receiveData["methodCode"] === messageSendingSuccessCode) {
             sendingMessageSuccess();
         }
     };
@@ -59,7 +59,7 @@ window.onload = function (ev) {
     // console.log("cookie", document.cookie.search(cookieLoginNameKey));
     if (document.cookie.search(cookieLoginNameKey) === -1) {
         document.querySelector(".signWindow").style.display = "block";
-    }else {
+    } else {
         var params = document.cookie.split(";");
         for (var i in params) {
             if (params[i].search(cookieLoginNameKey) !== -1) {
@@ -112,7 +112,7 @@ function refreshOnlineCount(count) {
  * @param nickName
  * @param message
  */
-function receiveMessage(nickName,message) {
+function receiveMessage(nickName, message) {
     var newMessageItem = document.createElement("div");
     newMessageItem.innerHTML = "<div class=\"message-content-nickName you\">" + nickName + "</div>\n" +
         "                    <div class=\"message-content you\">\n" + message + "</div>";
@@ -178,7 +178,7 @@ function doHttpGet(getParams) {
         url: "/chat/register" + getParams,
         dataType: "json",
         type: "GET",
-        complete:function (res) {
+        complete: function (res) {
             // console.log("res", res.responseText);
             // console.log("status", res.status);
             if (res.status === 200) {
@@ -187,7 +187,7 @@ function doHttpGet(getParams) {
                     nickName = receiveData["confirmNickName"];
                     // console.log("signWindow", document.querySelector(".signWindow"));
                     document.querySelector(".signWindow").style.display = "none";
-                }else {
+                } else {
                     alert("错误代码: " + receiveData["code"]);
                 }
             }
@@ -211,11 +211,11 @@ function inputFilter(message) {
     if (pattern_1.test(message)) {
         // console.log(message.replace(pattern_1, "$1 [*]"));
         return message.replace(pattern_1, "<$1>$2</[*]>");
-    }else if (pattern_2.test(message)) {
+    } else if (pattern_2.test(message)) {
         return message.replace(pattern_2, "<$1>[*]>");
-    }else if (pattern_3.test(message)) {
+    } else if (pattern_3.test(message)) {
         return message.replace(pattern_3, "<$1[*]");
-    }else {
+    } else {
         return message;
     }
 }

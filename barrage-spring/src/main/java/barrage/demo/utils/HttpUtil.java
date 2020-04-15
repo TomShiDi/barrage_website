@@ -10,7 +10,7 @@ import java.net.URL;
 
 public class HttpUtil {
 
-    public static String doGet(String requestUrl) throws Exception{
+    public static String doGet(String requestUrl) throws Exception {
         Assert.hasText(requestUrl, "请求链接不能为空");
         HttpURLConnection httpURLConnection = null;
         InputStream inputStream = null;

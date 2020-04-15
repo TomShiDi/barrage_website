@@ -26,7 +26,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class HBSocketServer implements HttpService,SocketFrameService{
+public class HBSocketServer implements HttpService, SocketFrameService {
 
     private String host;
     private int port;
@@ -98,7 +98,7 @@ public class HBSocketServer implements HttpService,SocketFrameService{
 //        onlineCountMap.put(ONLINE_COUNT_MAP_KEY, 0);
     }
 
-    public void start() throws Exception{
+    public void start() throws Exception {
         //EventLoopGroup是用来处理请求到来的各种event和IO操作的
         // 父工作组
         EventLoopGroup bossGroup = new NioEventLoopGroup();
@@ -114,7 +114,7 @@ public class HBSocketServer implements HttpService,SocketFrameService{
                 //添加请求到来时的初始化函数
                 .childHandler(new ChannelInitializer<Channel>() {
                     @Override
-                    protected void initChannel(Channel ch){
+                    protected void initChannel(Channel ch) {
                         //channel管道，各种读写操作都是在管道中执行的，可以理解为缓存区操作，NIO就是基于缓存操作的
                         ChannelPipeline pipeline = ch.pipeline();
                         channelGroup.add(ch);//将当前的请求对象缓存下来以便以后使用
@@ -149,6 +149,7 @@ public class HBSocketServer implements HttpService,SocketFrameService{
      * websocket之所以普及这么快的一个原因就是它兼容http协议，表现为建立websocket连接的第一次请求是http请求，
      * 但不是普通的http请求，是一个协议切换请求。
      * 因此，这个函数就是用来处理来自客户端的建立连接请求的
+     *
      * @param context 当前请求channel的上下文对象，可以获取当前请求channel
      * @param request netty封装的httprequest对象，主要功能和servlet中的差不多
      */
@@ -161,7 +162,7 @@ public class HBSocketServer implements HttpService,SocketFrameService{
             WebSocketServerHandshaker handshaker = factory.newHandshaker(request);
             if (handshaker == null) {
                 WebSocketServerHandshakerFactory.sendUnsupportedVersionResponse(context.channel());
-            }else{
+            } else {
                 handshaker.handshake(context.channel(), request);
                 context.channel().attr(ATTRIBUTE_KEY).set(handshaker);
 //                increaseOnlineCount();
@@ -174,7 +175,8 @@ public class HBSocketServer implements HttpService,SocketFrameService{
 
     /**
      * 处理websocket的各种形式的数据帧
-     * @param context 当前请求的上下文
+     *
+     * @param context        当前请求的上下文
      * @param webSocketFrame websocket的数据帧对象
      */
     @Override
@@ -218,6 +220,7 @@ public class HBSocketServer implements HttpService,SocketFrameService{
 
     /**
      * 判断是否是切换webSocket的请求
+     *
      * @param request 客户端的请求
      * @return 返回判断结果
      */
@@ -231,6 +234,7 @@ public class HBSocketServer implements HttpService,SocketFrameService{
 
     /**
      * 构造返回在线客户的返回数据对象
+     *
      * @param onlineCount 在线数
      * @return 构造的消息对象
      */
@@ -243,11 +247,12 @@ public class HBSocketServer implements HttpService,SocketFrameService{
 
     /**
      * 构造消息数据返回数据对象
-     * @param message 响应消息
+     *
+     * @param message     响应消息
      * @param currentDate 当前时间
      * @return 构造的消息对象
      */
-    private CommunicationMessageDao createMessageResponse(String message,String currentDate) {
+    private CommunicationMessageDao createMessageResponse(String message, String currentDate) {
         CommunicationMessageDao communicationMessageDao = new CommunicationMessageDao();
         communicationMessageDao.setMethodCode(SocketResponseEnum.MESSAGE_RESPONSE.getCode());
         communicationMessageDao.setSendingMessage(message);
@@ -257,6 +262,7 @@ public class HBSocketServer implements HttpService,SocketFrameService{
 
     /**
      * 构造服务器接受数据成功的返回数据对象
+     *
      * @return 构造的消息对象
      */
     private CommunicationMessageDao createSuccessResponse() {

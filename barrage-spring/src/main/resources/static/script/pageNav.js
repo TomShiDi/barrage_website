@@ -46,53 +46,53 @@ function initButtonStatus(param) {
     page4.innerHTML = 4;
     page5.innerHTML = 5;
 
-        switch (count) {
-            case 1:
-                minPage.removeAttribute("disabled");
-                page1.removeAttribute("disabled");
-                break;
-            case 2:
-                minPage.removeAttribute("disabled");
-                page1.removeAttribute("disabled");
-                page2.removeAttribute("disabled");
-                nextPageButton.removeAttribute("disabled");
-                break;
-            case 3:
-                minPage.removeAttribute("disabled");
-                page1.removeAttribute("disabled");
-                page2.removeAttribute("disabled");
-                page3.removeAttribute("disabled");
-                nextPageButton.removeAttribute("disabled");
-                break;
-            case 4:
-                minPage.removeAttribute("disabled");
-                page1.removeAttribute("disabled");
-                page2.removeAttribute("disabled");
-                page3.removeAttribute("disabled");
-                page4.removeAttribute("disabled");
-                nextPageButton.removeAttribute("disabled");
-                break;
-            case 5:
-                minPage.removeAttribute("disabled");
-                page1.removeAttribute("disabled");
-                page2.removeAttribute("disabled");
-                page3.removeAttribute("disabled");
-                page4.removeAttribute("disabled");
-                page5.removeAttribute("disabled");
-                nextPageButton.removeAttribute("disabled");
-                break;
-            default:
-                minPage.removeAttribute("disabled");
-                page1.removeAttribute("disabled");
-                page2.removeAttribute("disabled");
-                page3.removeAttribute("disabled");
-                page4.removeAttribute("disabled");
-                page5.removeAttribute("disabled");
-                maxPage.removeAttribute("disabled");
-                nextPageButton.removeAttribute("disabled");
-                maxPage.innerHTML = count;
-                break;
-        }
+    switch (count) {
+        case 1:
+            minPage.removeAttribute("disabled");
+            page1.removeAttribute("disabled");
+            break;
+        case 2:
+            minPage.removeAttribute("disabled");
+            page1.removeAttribute("disabled");
+            page2.removeAttribute("disabled");
+            nextPageButton.removeAttribute("disabled");
+            break;
+        case 3:
+            minPage.removeAttribute("disabled");
+            page1.removeAttribute("disabled");
+            page2.removeAttribute("disabled");
+            page3.removeAttribute("disabled");
+            nextPageButton.removeAttribute("disabled");
+            break;
+        case 4:
+            minPage.removeAttribute("disabled");
+            page1.removeAttribute("disabled");
+            page2.removeAttribute("disabled");
+            page3.removeAttribute("disabled");
+            page4.removeAttribute("disabled");
+            nextPageButton.removeAttribute("disabled");
+            break;
+        case 5:
+            minPage.removeAttribute("disabled");
+            page1.removeAttribute("disabled");
+            page2.removeAttribute("disabled");
+            page3.removeAttribute("disabled");
+            page4.removeAttribute("disabled");
+            page5.removeAttribute("disabled");
+            nextPageButton.removeAttribute("disabled");
+            break;
+        default:
+            minPage.removeAttribute("disabled");
+            page1.removeAttribute("disabled");
+            page2.removeAttribute("disabled");
+            page3.removeAttribute("disabled");
+            page4.removeAttribute("disabled");
+            page5.removeAttribute("disabled");
+            maxPage.removeAttribute("disabled");
+            nextPageButton.removeAttribute("disabled");
+            maxPage.innerHTML = count;
+            break;
+    }
 }
 
 function pageButtonClick(object) {
@@ -207,9 +207,9 @@ function reFreshButtonStatus(index) {
             page5.removeAttribute("disabled");
             targetButton = null;
         });
-        page5.setAttribute("disabled","disabled");
+        page5.setAttribute("disabled", "disabled");
         targetButton = page5;
-    }else{
+    } else {
         if (targetButton != null) {
             targetButton.classList.remove("button-current");
             targetButton.removeAttribute("disabled");
@@ -239,7 +239,7 @@ function reFreshButtonStatus(index) {
     }
 }
 
-function pageNavHttpRequest(searchName,pageNum) {
+function pageNavHttpRequest(searchName, pageNum) {
     $.ajax({
         url: "/pan/search",
         type: "get",
@@ -251,7 +251,7 @@ function pageNavHttpRequest(searchName,pageNum) {
         complete: function (response) {
             if (response.status == 200) {
                 var data = JSON.parse(response.responseText);
-                itemCount = Math.ceil(parseInt(data["list"]["count"])/10);
+                itemCount = Math.ceil(parseInt(data["list"]["count"]) / 10);
                 currentPage = parseInt(data["list"]["p"]);
 
                 searchInfoArray = searchInfoArray.concat(data["list"]["data"]);

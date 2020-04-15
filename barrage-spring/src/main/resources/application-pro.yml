@@ -11,10 +11,37 @@ spring:
     username: root
     password: 15576123138
     driver-class-name: com.mysql.cj.jdbc.Driver
+  mail:
+    host: smtp.qq.com
+    username: 2359536639@qq.com
+    password: xwfchyeomxetebag
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  kafka:
+    producer:
+      bootstrap-servers: 127.0.0.1:9092
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
 server:
   port: 8080
   servlet:
     context-path:
+#  ssl:
+#    key-store: classpath:gornix.jks
+#    key-store-type: JKS
+#    key-password: 654321
+#    key-alias: gornix
+
+mail:
+  from: ${spring.mail.username}
 
 
 
@@ -26,3 +53,6 @@ allowedOrigin: https://selltom.mynatapp.cc
 
 ipRecordFilePath: /usr/barrage-site-visitor.txt
 #ipRecordFilePath: D://barrage-site-visitor.txt
+
+login:
+  userKey: tomshidi/

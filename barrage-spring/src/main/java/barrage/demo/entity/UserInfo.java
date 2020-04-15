@@ -1,24 +1,46 @@
 package barrage.demo.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.util.Date;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class UserInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer userId;
 
+    @NotEmpty(message = "呢成不能为空")
     private String nickName;
 
+    @NotEmpty(message = "密码不能为空")
+    private String userPassword;
+
+    @NotEmpty(message = "性别不能为空")
     private String userSex;
 
+    @NotEmpty(message = "手机号不能为空")
     private String userPhoneNum;
 
     private String userDescription;
+
+    @Column(name = "user_email", unique = true, length = 64)
+    private String userEmail;
+
+    @Column(name = "create_time", updatable = false)
+    private Date createDate;
+
+    @Column(name = "update_time")
+    @LastModifiedDate
+    private Date updateDate;
+
+    @Column(name = "user_status", nullable = false)
+    private Integer userStatus = 0;
 
 
     public Integer getUserId() {
@@ -59,5 +81,49 @@ public class UserInfo {
 
     public void setUserDescription(String userDescription) {
         this.userDescription = userDescription;
+    }
+
+    public void setUserPhoneNum(String userPhoneNum) {
+        this.userPhoneNum = userPhoneNum;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+
+    public Integer getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(Integer userStatus) {
+        this.userStatus = userStatus;
     }
 }

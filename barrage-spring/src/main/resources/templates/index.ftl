@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
 
     <meta http-equiv="X-UA-Compatible" content=="IE=edge"/>
-    <#--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
+<#--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>-------------</title>
     <link type="text/css" href="/script/jquery-easyui-1.7.5/themes/icon.css" rel="stylesheet">
@@ -14,15 +14,15 @@
     <script type="text/javascript" src="/script/jquery-easyui-1.7.5/locale/easyui-lang-zh_CN.js"></script>
     <script src="https://use.fontawesome.com/06dae4fa6e.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="/css/style.css?t=1.2.6">
+    <link rel="stylesheet" type="text/css" href="/css/style.css?t=1.2.8">
 </head>
 <body>
-<script src="/script/three.min.js"></script>
-<script src="/script/canvas-index.js"></script>
-<canvas width="1920" height="1007" style="position: absolute; top: 0;"></canvas>
+<#--<script src="/script/three.min.js"></script>-->
+<#--<script src="/script/canvas-index.js"></script>-->
+<#--<canvas width="1920" height="1007" style="position: absolute; top: 0;"></canvas>-->
 <nav class="side-menu">
     <div class="settings">
-        <img class="head-icon" src="pic/head-icon-1.jpg" />
+        <img class="head-icon" src="pic/head-icon-1.jpg"/>
     </div>
     <div class="menu-ul">
         <ul>
@@ -95,7 +95,7 @@
     <div class="barrage-content">
         <div class="barrage-road">
                 <span class="barrage">
-                    <img src="pic/huaji.jpg" rel="icon" class="barrage-head-img" alt="" />
+                    <img src="pic/huaji.jpg" rel="icon" class="barrage-head-img" alt=""/>
                     <div class="barrage-info-area">
                         测试弹幕.....
                         <img src="pic/star-active.png" class="star-img" alt="">
@@ -131,19 +131,19 @@
             <div class="range-slider-handle"></div>
         </div>
         <div style="margin-left: 5px">
-            <input type="radio"  name="colorSelected" value="black">
+            <input type="radio" name="colorSelected" value="black">
             <span class="colorSelectorText" style="color: black">黑</span>
         </div>
         <div style="margin-left: 5px">
-            <input type="radio"  name="colorSelected" value="red">
+            <input type="radio" name="colorSelected" value="red">
             <span class="colorSelectorText" style="color: red">红</span>
         </div>
         <div style="margin-left: 5px">
-            <input type="radio"  name="colorSelected" value="green">
+            <input type="radio" name="colorSelected" value="green">
             <span class="colorSelectorText" style="color: green">绿</span>
         </div>
         <div style="margin-left: 5px">
-            <input type="radio"  name="colorSelected" value="white" checked="checked">
+            <input type="radio" name="colorSelected" value="white" checked="checked">
             <span class="colorSelectorText" style="color: white">白</span>
         </div>
         <div style="margin-left: 10px">
@@ -174,7 +174,7 @@
     <img src="pic/phone-reverse.gif">
     <span>请解除手机屏幕锁定，并将手机横屏放置</span>
 </div>
-<script type="text/javascript" src="script/index-2-pro.js?t=1.1.3"></script>
+<script type="text/javascript" src="script/index-2-pro.js?t=1.1.5"></script>
 <ul class="right-menu-ul" style="display: none">
     <li class="menu-item">举报当前弹幕</li>
 </ul>

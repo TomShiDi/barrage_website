@@ -1,4 +1,4 @@
-package barrage.demo.methodLog;
+package barrage.demo.methodlog;
 
 import java.io.File;
 import java.net.URL;
@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class ClassScanUtil {
 
-    public static void getClass(String pkgName,Set<Class<?>> classSet) {
+    public static void getClass(String pkgName, Set<Class<?>> classSet) {
         if (classSet == null) {
             classSet = new HashSet<>();
         }

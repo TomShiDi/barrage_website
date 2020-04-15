@@ -5,11 +5,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * @author TomShiDi
+ * @Date 2020年3月24日18:28:54
+ */
 @Configuration
 @PropertySource({"classpath:application.yml"})
-public class WebConfig extends WebMvcConfigurerAdapter {
+public class WebConfig implements WebMvcConfigurer {
 
     @Value("${filePath}")
     private String resourceLocation;
@@ -17,10 +22,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        super.addResourceHandlers(registry);
-//        registry.addResourceHandler("/info/**").addResourceLocations("file:D:/bilibiliComment/");
         registry.addResourceHandler("/info/**").addResourceLocations("file:" + resourceLocation + "/");
         registry.addResourceHandler("/.well-known/pki-validation/**").addResourceLocations("file:/usr/valid/");
         BilibiliJsonUtil.setFilePath(resourceLocation);
+    }
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("login.html");
     }
 }

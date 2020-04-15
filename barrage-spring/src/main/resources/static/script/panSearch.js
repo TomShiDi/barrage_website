@@ -9,7 +9,7 @@ var itemCount = 0;
 var xmlHttpRequest = null;
 
 
-function httpRequest(url,method) {
+function httpRequest(url, method) {
     if (xmlHttpRequest != null) {
         return;
     }
@@ -34,7 +34,7 @@ function statusChange() {
         var data = JSON.parse(xmlHttpRequest.responseText);
         searchInfoArray = searchInfoArray.concat(data);
         console.log("searchInfoArray", searchInfoArray);
-    }else {
+    } else {
         console.log("xmlHttpError", xmlHttpRequest);
     }
 }
@@ -54,7 +54,7 @@ function buttonClick() {
         complete: function (response) {
             if (response.status == 200) {
                 var data = JSON.parse(response.responseText);
-                itemCount = Math.ceil(parseInt(data["list"]["count"])/10);
+                itemCount = Math.ceil(parseInt(data["list"]["count"]) / 10);
                 initButtonStatus(itemCount);
                 console.log("itemCount", itemCount);
                 searchInfoArray = searchInfoArray.concat(data["list"]["data"]);

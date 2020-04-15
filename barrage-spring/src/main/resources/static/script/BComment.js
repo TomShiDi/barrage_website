@@ -17,30 +17,29 @@ function getCommentClick() {
         complete: function (response) {
             if (response.status == 200) {
                 var data = JSON.parse(response.responseText);
-                var form = document.createElement("form");
                 var a = document.createElement("a");
                 // a.rel = "nofollow";
-                a.href = data["message"];
-                if (deviceType === "mobile") {
-                    a.download = avId + ".txt";
-                }else {
-                    a.download = "";
+                if (data["code"] === 500) {
+                    alert(data["message"]);
                 }
+                if (data["code"] === 200) {
+                    a.href = data["message"];
+                    if (deviceType === "mobile") {
+                        a.download = avId + ".txt";
+                    } else {
+                        a.download = "";
+                    }
 
-                document.getElementsByTagName("body")[0].appendChild(a);
-                a.click();
-                // document.getElementsByTagName("body")[0].removeChild(a);
-                // window.open(data["message"]);
-                // form.action = data["message"];
-                // form.method = 'get';
-                // document.getElementsByTagName("body")[0].appendChild(form);
-                // form.submit();
-                i.classList.remove("fa", "fa-spinner", "fa-spin");
+                    document.getElementsByTagName("body")[0].appendChild(a);
+                    a.click();
+
+                }
             } else {
-                i.classList.remove("fa", "fa-spinner", "fa-spin");
                 alert("服务器错误");
             }
+            i.classList.remove("fa", "fa-spinner", "fa-spin");
         }
+
     });
     alert("请耐心等十几秒");
 }

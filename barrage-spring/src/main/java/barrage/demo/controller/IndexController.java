@@ -3,10 +3,7 @@ package barrage.demo.controller;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
-import com.alipay.api.request.AlipayOpenPublicTemplateMessageIndustryModifyRequest;
-import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.api.request.AlipayTradeWapPayRequest;
-import com.alipay.api.response.AlipayOpenPublicTemplateMessageIndustryModifyResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +18,7 @@ import static barrage.demo.config.AliPayConfig.*;
 
 
 @Controller
-@RestController("/")
+@RestController("/index")
 public class IndexController {
     @GetMapping("/index")
     public ModelAndView showIndex() {
@@ -30,7 +27,7 @@ public class IndexController {
     }
 
     @GetMapping("/alipay")
-    public void payTest(HttpServletRequest httpRequest,HttpServletResponse httpResponse) throws IOException,AlipayApiException {
+    public void payTest(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws IOException, AlipayApiException {
         AlipayClient alipayClient = new DefaultAlipayClient(SERVICE_UTL, APP_ID, APP_PRIVATE_KEY, "json", CHARSET, ALIPAY_PUBLIC_KEY, "RSA"); //获得初始化的AlipayClient
         AlipayTradeWapPayRequest alipayRequest = new AlipayTradeWapPayRequest();//创建API对应的request
 //        AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();//创建API对应的request
@@ -38,7 +35,7 @@ public class IndexController {
         alipayRequest.setReturnUrl("http://nmah69.natappfree.cc/callback");
         alipayRequest.setNotifyUrl("http://nmah69.natappfree.cc/notify");//在公共参数中设置回跳和通知地址
         alipayRequest.setBizContent("{" +
-                "    \"out_trade_no\":\"2015032001010100"+new Random().nextInt(10)+"\"," +
+                "    \"out_trade_no\":\"2015032001010100" + new Random().nextInt(10) + "\"," +
                 "    \"product_code\":\"FAST_INSTANT_TRADE_PAY\"," +
                 "    \"total_amount\":88.88," +
                 "    \"subject\":\"Iphone6 16G\"," +
@@ -46,9 +43,9 @@ public class IndexController {
                 "    \"passback_params\":\"merchantBizType%3d3C%26merchantBizNo%3d2016010101111\"," +
                 "    \"extend_params\":{" +
                 "    \"sys_service_provider_id\":\"2088511833207846\"" +
-                "    }"+
+                "    }" +
                 "  }");//填充业务参数
-        String form="";
+        String form = "";
         try {
             form = alipayClient.pageExecute(alipayRequest).getBody(); //调用SDK生成表单
         } catch (AlipayApiException e) {

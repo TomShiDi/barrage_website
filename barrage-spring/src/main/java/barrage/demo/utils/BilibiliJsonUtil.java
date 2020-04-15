@@ -19,8 +19,8 @@ public class BilibiliJsonUtil {
 
     private static long timePre = 10800000L;
 
-    private static String filePath;
-//    private static String filePath = "D:/bilibiliComment";
+    //    private static String filePath;
+    private static String filePath = "D:/bilibiliComment";
 
     @SuppressWarnings("unchecked")
     public static List<Map<String, String>> jsonParse(String jsonString) throws IOException {
@@ -33,6 +33,10 @@ public class BilibiliJsonUtil {
         if (bilibiliCommentEntity == null) {
             return null;
         }
+        Map<String, Object> data = (Map<String, Object>) bilibiliCommentEntity.getData();
+        if (data == null) {
+            return null;
+        }
         List<Map<String, Object>> replies = (List<Map<String, Object>>) bilibiliCommentEntity.getData().get("replies");
         Map<String, Double> pageInfo = (Map<String, Double>) bilibiliCommentEntity.getData().get("page");
         size = pageInfo.get("size").intValue();
@@ -40,7 +44,7 @@ public class BilibiliJsonUtil {
         int size = replies.size();
         for (int i = 0; i < size; i++) {
             item = new HashMap<>();
-            item.put("rpid", String.valueOf(((Double)replies.get(i).get("rpid")).longValue()));
+            item.put("rpid", String.valueOf(((Double) replies.get(i).get("rpid")).longValue()));
             item.put("oid", String.valueOf(((Double) replies.get(i).get("oid")).longValue()));
             item.put("mid", String.valueOf(((Double) replies.get(i).get("mid")).longValue()));
             item.put("uname", ((Map<String, String>) replies.get(i).get("member")).get("uname"));
@@ -78,7 +82,11 @@ public class BilibiliJsonUtil {
         Gson gson = new Gson();
         String fileNameIndex = data.get(0).get("oid");
 //        String filePath = "/usr/bilibiliComment";
-        File file = new File(filePath + "/" + fileNameIndex + ".txt");
+        File file = new File(filePath);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        file = new File(filePath + "/" + fileNameIndex + ".txt");
         FileOutputStream fileOutputStream = null;
         BufferedOutputStream bufferedOutputStream = null;
 
@@ -94,18 +102,22 @@ public class BilibiliJsonUtil {
         }
     }
 
-    public static void createFileDelete(String fileIndex) throws IOException{
+    public static void createFileDelete(String fileIndex) throws IOException {
         Gson gson = new Gson();
 //        String filePath = "D:/bilibiliComment";
 //        String filePath = "/usr/bilibiliComment";
-        File file = new File(filePath + "/" + fileIndex + ".txt");
+        File file = new File(filePath);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        file = new File(filePath + "/" + fileIndex + ".txt");
         if (file.exists()) {
             file.delete();
         }
         file.createNewFile();
     }
 
-    public static boolean isFileValid(String avId) throws Exception{
+    public static boolean isFileValid(String avId) throws Exception {
         long currentTime = System.currentTimeMillis();
 
         File file = new File(filePath + "/" + avId + ".txt");

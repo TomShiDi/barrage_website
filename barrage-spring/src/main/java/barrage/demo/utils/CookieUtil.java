@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class CookieUtil {
 
-    public static void setCookieNickName(HttpServletResponse response,String nickName) {
+    public static void setCookieNickName(HttpServletResponse response, String nickName) {
         Cookie cookie = new Cookie(CookieConstance.cookieName, nickName);
         cookie.setMaxAge(CookieConstance.maxAge);
         cookie.setPath("/");

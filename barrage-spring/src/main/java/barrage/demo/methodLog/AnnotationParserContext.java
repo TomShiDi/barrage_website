@@ -7,9 +7,9 @@ import barrage.demo.methodlog.factorys.ProxyFactoryMeta;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AnnotationParserContext implements ContextMeta{
+public class AnnotationParserContext implements ContextMeta {
 
-    private static Map<Class<? extends AnnotationParserMeta>,AnnotationParserMeta> annotationParserMetaMap;
+    private static Map<Class<? extends AnnotationParserMeta>, AnnotationParserMeta> annotationParserMetaMap;
 
     private AnnotationScannedMeta annotationScannedMeta;
 

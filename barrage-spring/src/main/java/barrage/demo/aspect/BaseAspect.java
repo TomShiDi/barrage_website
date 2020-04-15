@@ -35,11 +35,14 @@ public class BaseAspect {
     }
 
     @Before("basePointCut()")
-    public void changeOriginHead(JoinPoint joinPoint) throws Exception{
+    public void changeOriginHead(JoinPoint joinPoint) throws Exception {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 
-        HttpServletRequest request =  attributes.getRequest();
-        HttpServletResponse response =  attributes.getResponse();
+        if (attributes == null) {
+            return;
+        }
+        HttpServletRequest request = attributes.getRequest();
+        HttpServletResponse response = attributes.getResponse();
 
         String origin = request.getHeader("Origin");
         String ip = null;

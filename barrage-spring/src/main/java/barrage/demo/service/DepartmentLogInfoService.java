@@ -1,6 +1,6 @@
 //package barrage.demo.service;
 //
-//import barrage.demo.entity.DepartmentLogInfo;
+//import barrage.demo.barrageapi.entity.DepartmentLogInfo;
 //import org.springframework.data.domain.Page;
 //import org.springframework.data.domain.Pageable;
 //

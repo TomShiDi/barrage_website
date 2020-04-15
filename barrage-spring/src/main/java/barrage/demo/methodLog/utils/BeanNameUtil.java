@@ -7,7 +7,7 @@ package barrage.demo.methodlog.utils;
  */
 public class BeanNameUtil {
 
-    public static String parseToBeanName(String srcName){
+    public static String parseToBeanName(String srcName) {
 //        String dstName;
         if (srcName == null || srcName.length() < 1) {
             throw new RuntimeException();
@@ -16,13 +16,13 @@ public class BeanNameUtil {
             String temp = srcName.substring(srcName.lastIndexOf(".") + 1, srcName.length());
             if (!(Character.isLowerCase(temp.charAt(0)))) {
                 return (new StringBuilder()).append(Character.toLowerCase(temp.charAt(0))).append(temp.substring(1)).toString();
-            }else {
+            } else {
                 return temp;
             }
-        }else {
+        } else {
             if (!(Character.isLowerCase(srcName.charAt(0)))) {
                 return (new StringBuilder()).append(Character.toLowerCase(srcName.charAt(0))).append(srcName.substring(1)).toString();
-            }else {
+            } else {
                 return srcName;
             }
         }

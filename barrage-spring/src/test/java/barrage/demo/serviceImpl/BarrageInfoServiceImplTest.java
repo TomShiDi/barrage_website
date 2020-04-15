@@ -53,7 +53,7 @@ public class BarrageInfoServiceImplTest {
     }
 
     @Test
-    public void getBarragePageByIndex(){
+    public void getBarragePageByIndex() {
         PageRequest request = PageRequest.of(0, 20);
         Page<BarrageInfo> barrageInfoPage = barrageInfoService.getBarragePageByIndex(request);
         Assert.assertNotEquals(0, barrageInfoPage.getTotalElements());

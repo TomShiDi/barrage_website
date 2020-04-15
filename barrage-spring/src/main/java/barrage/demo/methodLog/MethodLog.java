@@ -4,11 +4,12 @@ import java.lang.annotation.*;
 
 /**
  * 用于指定需要方法跟踪的类
+ *
  * @Author TomShiDi
  */
 @Documented
 @Inherited
-@Target({ElementType.TYPE,ElementType.METHOD,ElementType.PARAMETER})
+@Target({ElementType.TYPE, ElementType.METHOD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MethodLog {
 

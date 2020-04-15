@@ -4,7 +4,8 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <!-- jdbc配置 -->
-    <classPathEntry location="E:\IntelliJ IDEA 2018.1.1\plugins\maven\repository\mysql\mysql-connector-java\5.1.31\mysql-connector-java-5.1.31.jar" />
+    <classPathEntry
+            location="E:\IntelliJ IDEA 2018.1.1\plugins\maven\repository\mysql\mysql-connector-java\5.1.31\mysql-connector-java-5.1.31.jar"/>
     <context id="MySql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
@@ -29,12 +30,12 @@
                 connectionURL="jdbc:mysql://localhost:3306/barrage_site?characterEncoding=UTF-8"
                 userId="root"
                 password="15576123138"
-                />
-        <javaModelGenerator targetPackage="barrage.demo.entity" targetProject="src/main/java" />
-        <sqlMapGenerator targetPackage="barrage.demo.mapper" targetProject="src/main/java" />
-        <javaClientGenerator type="XMLMAPPER" targetPackage="barrage.demo.mapper" targetProject="src/main/java" />
+        />
+        <javaModelGenerator targetPackage="barrage.demo.barrageapi.entity" targetProject="src/main/java"/>
+        <sqlMapGenerator targetPackage="barrage.demo.mapper" targetProject="src/main/java"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="barrage.demo.mapper" targetProject="src/main/java"/>
         <table tableName="department_log_info">
-            <generatedKey column="table_id" sqlStatement="Mysql" />
+            <generatedKey column="table_id" sqlStatement="Mysql"/>
         </table>
     </context>
 </generatorConfiguration>

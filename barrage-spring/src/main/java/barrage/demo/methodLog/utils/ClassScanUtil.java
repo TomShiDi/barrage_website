@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class ClassScanUtil {
 
-    public static void getClass(String pkgName,Set<Class<?>> classSet) {
+    public static void getClass(String pkgName, Set<Class<?>> classSet) {
         if (classSet == null) {
             classSet = new HashSet<>();
         }

@@ -18,6 +18,7 @@ public class HBSocketHandler extends SimpleChannelInboundHandler<Object> {
 
     /**
      * 当请求到达这一个handler的时候，根据请求的类型执行相应的操作，websocket或者http
+     *
      * @param ctx
      * @param msg
      * @throws Exception

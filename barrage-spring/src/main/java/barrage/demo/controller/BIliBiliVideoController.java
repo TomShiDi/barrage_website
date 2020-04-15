@@ -23,6 +23,7 @@ public class BIliBiliVideoController {
 
     /**
      * 根据avId请求B站接口获取评论数据，并存入文件，高并发下崩溃率很高
+     *
      * @param avId 视频的id号
      * @return
      * @throws Exception
@@ -35,14 +36,15 @@ public class BIliBiliVideoController {
         String requestUrl = bilibiliApiUrl + "?oid=" + avId + "&type=1&pn=";
         String requestData = null;
         BilibiliControllerDao bilibiliControllerDao = new BilibiliControllerDao();
-//        if (BilibiliJsonUtil.isFileValid(avId)){
-//            bilibiliControllerDao.setCode(200);
-//            bilibiliControllerDao.setMessage("/info/" + avId + ".txt");
-//            return bilibiliControllerDao;
-//        }
+
         BilibiliJsonUtil.createFileDelete(avId);
         requestData = HttpUtil.doGet(requestUrl + "1");
         BilibiliJsonUtil.writeToFile(BilibiliJsonUtil.jsonParse(requestData));
+        if (BilibiliJsonUtil.size <= 0) {
+            bilibiliControllerDao.setCode(500);
+            bilibiliControllerDao.setMessage("当前视频没有评论");
+            return bilibiliControllerDao;
+        }
         times = BilibiliJsonUtil.count / BilibiliJsonUtil.size + 1;
         for (int i = 2; i <= times - 1; i++) {
             //TODO 问题记录,循环中执行http请求,似乎不是阻塞执行，待验证
@@ -51,7 +53,7 @@ public class BIliBiliVideoController {
             BilibiliJsonUtil.writeToFile(BilibiliJsonUtil.jsonParse(requestData));
         }
 
-
+        Thread.sleep(400);
         bilibiliControllerDao.setCode(200);
         bilibiliControllerDao.setMessage("/info/" + avId + ".txt");
         return bilibiliControllerDao;

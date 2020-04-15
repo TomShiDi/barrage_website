@@ -11,11 +11,12 @@ import org.springframework.context.ApplicationContextAware;
 
 /**
  * bean实例化完成以后将要执行的处理器函数
+ *
  * @Author TomShiDi
  * @Since 2019/6/11
  * @Version 1.0
  */
-public class DefaultProxyProcessor implements BeanPostProcessor,ApplicationContextAware {
+public class DefaultProxyProcessor implements BeanPostProcessor, ApplicationContextAware {
 
     private ApplicationContext context;
 
@@ -35,7 +36,7 @@ public class DefaultProxyProcessor implements BeanPostProcessor,ApplicationConte
             proxyBean = proxyMethodLogAnnotationParser.getProxyInstance(bean.getClass());
 //            if (context.containsBean(beanName))
 //            BeanUtils.copyProperties(bean,proxyBean);
-        }else {
+        } else {
             proxyBean = bean;
         }
         return proxyBean;

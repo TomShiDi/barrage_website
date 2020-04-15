@@ -16,8 +16,8 @@ var postionLeft = barrage_content.clientLeft;
 
 var rect = barrage_content.getBoundingClientRect();
 
-var numX = [100, 150, 260,270,300,310,315,415,400,250];
-var numY = [100, 300, 400,320,60,55,389,260,235,210];
+var numX = [100, 150, 260, 270, 300, 310, 315, 415, 400, 250];
+var numY = [100, 300, 400, 320, 60, 55, 389, 260, 235, 210];
 
 var rangeValue = 20;
 
@@ -25,132 +25,132 @@ sliderHandle.style.left = "0px";
 
 var barrageData_2 = [
     {
-        "content":"第一条弹幕.............",
-        "color":"red",
-        "speed":2,
-        "textSize":20,
-        "positionX":0,
-        "positionY":0
+        "content": "第一条弹幕.............",
+        "color": "red",
+        "speed": 2,
+        "textSize": 20,
+        "positionX": 0,
+        "positionY": 0
     },
     {
-        "content":"第三条弹幕.............",
-        "color":"green",
-        "speed":6,
-        "textSize":20,
-        "positionX":0,
-        "positionY":0
+        "content": "第三条弹幕.............",
+        "color": "green",
+        "speed": 6,
+        "textSize": 20,
+        "positionX": 0,
+        "positionY": 0
     },
     {
-        "content":"第二条弹幕.............",
-        "color":"red",
-        "speed":2,
-        "textSize":20,
-        "positionX":0,
-        "positionY":0
+        "content": "第二条弹幕.............",
+        "color": "red",
+        "speed": 2,
+        "textSize": 20,
+        "positionX": 0,
+        "positionY": 0
     },
     {
-        "content":"第四条弹幕.............",
-        "color":"blue",
-        "speed":8,
-        "textSize":20,
-        "positionX":0,
-        "positionY":0
+        "content": "第四条弹幕.............",
+        "color": "blue",
+        "speed": 8,
+        "textSize": 20,
+        "positionX": 0,
+        "positionY": 0
     },
     {
-        "content":"第五条弹幕.............",
-        "color":"black",
-        "speed":2,
-        "textSize":20,
-        "positionX":0,
-        "positionY":0
+        "content": "第五条弹幕.............",
+        "color": "black",
+        "speed": 2,
+        "textSize": 20,
+        "positionX": 0,
+        "positionY": 0
     },
     {
-        "content":"--------随机弹幕-------------.",
-        "color":"green",
-        "speed":2,
-        "textSize":20,
-        "positionX":0,
-        "positionY":0
+        "content": "--------随机弹幕-------------.",
+        "color": "green",
+        "speed": 2,
+        "textSize": 20,
+        "positionX": 0,
+        "positionY": 0
     },
     {
-        "content":"--------随机弹幕-------------.",
-        "color":"green",
-        "speed":2,
-        "textSize":20,
-        "positionX":0,
-        "positionY":0
+        "content": "--------随机弹幕-------------.",
+        "color": "green",
+        "speed": 2,
+        "textSize": 20,
+        "positionX": 0,
+        "positionY": 0
     },
     {
-        "content":"--------随机弹幕-------------.",
-        "color":"green",
-        "speed":2,
-        "textSize":20,
-        "positionX":0,
-        "positionY":0
+        "content": "--------随机弹幕-------------.",
+        "color": "green",
+        "speed": 2,
+        "textSize": 20,
+        "positionX": 0,
+        "positionY": 0
     },
     {
-        "content":"--------随机弹幕-------------.",
-        "color":"green",
-        "speed":2,
-        "textSize":20,
-        "positionX":0,
-        "positionY":0
+        "content": "--------随机弹幕-------------.",
+        "color": "green",
+        "speed": 2,
+        "textSize": 20,
+        "positionX": 0,
+        "positionY": 0
     },
     {
-        "content":"--------随机弹幕-------------.",
-        "color":"green",
-        "speed":2,
-        "textSize":20,
-        "positionX":0,
-        "positionY":0
+        "content": "--------随机弹幕-------------.",
+        "color": "green",
+        "speed": 2,
+        "textSize": 20,
+        "positionX": 0,
+        "positionY": 0
     },
     {
-        "content":"--------随机弹幕-------------.",
-        "color":"green",
-        "speed":2,
-        "textSize":20,
-        "positionX":0,
-        "positionY":0
+        "content": "--------随机弹幕-------------.",
+        "color": "green",
+        "speed": 2,
+        "textSize": 20,
+        "positionX": 0,
+        "positionY": 0
     },
     {
-        "content":"--------随机弹幕-------------.",
-        "color":"green",
-        "speed":2,
-        "textSize":20,
-        "positionX":0,
-        "positionY":0
+        "content": "--------随机弹幕-------------.",
+        "color": "green",
+        "speed": 2,
+        "textSize": 20,
+        "positionX": 0,
+        "positionY": 0
     },
     {
-        "content":"--------随机弹幕-------------.",
-        "color":"green",
-        "speed":2,
-        "textSize":20,
-        "positionX":0,
-        "positionY":0
+        "content": "--------随机弹幕-------------.",
+        "color": "green",
+        "speed": 2,
+        "textSize": 20,
+        "positionX": 0,
+        "positionY": 0
     },
     {
-        "content":"--------随机弹幕-------------.",
-        "color":"green",
-        "speed":2,
-        "textSize":20,
-        "positionX":0,
-        "positionY":0
+        "content": "--------随机弹幕-------------.",
+        "color": "green",
+        "speed": 2,
+        "textSize": 20,
+        "positionX": 0,
+        "positionY": 0
     },
     {
-        "content":"--------随机弹幕-------------.",
-        "color":"green",
-        "speed":2,
-        "textSize":20,
-        "positionX":0,
-        "positionY":0
+        "content": "--------随机弹幕-------------.",
+        "color": "green",
+        "speed": 2,
+        "textSize": 20,
+        "positionX": 0,
+        "positionY": 0
     },
     {
-        "content":"--------随机弹幕-------------.",
-        "color":"green",
-        "speed":2,
-        "textSize":20,
-        "positionX":0,
-        "positionY":0
+        "content": "--------随机弹幕-------------.",
+        "color": "green",
+        "speed": 2,
+        "textSize": 20,
+        "positionX": 0,
+        "positionY": 0
     }
 ];
 
@@ -280,7 +280,7 @@ var barrageData_2 = [
     // ];
 
 
-    var color = ["red","blue","green"];
+    var color = ["red", "blue", "green"];
 
     console.log("barrage_clientWidth", width, "barrage_clientHeight", height);
 
@@ -290,7 +290,7 @@ var barrageData_2 = [
     // vas.height = height;
     vas.rect(rect.left, rect.top, rect.width, rect.height);
     // vas.font = "20px Arial"
-    for (var i = 0; i <barrageData_2.length;i++){
+    for (var i = 0; i < barrageData_2.length; i++) {
         barrageData_2[i]["positionX"] = numX[Math.floor(Math.random() * 10)];
         barrageData_2[i]["positionY"] = numY[Math.floor(Math.random() * 10)];
     }
@@ -304,7 +304,7 @@ var barrageData_2 = [
             vas.fillText(barrageData_2[i]["content"], barrageData_2[i]["positionX"], barrageData_2[i]["positionY"]);
         }
         // console.log("textWidth: ", vas.measureText(barrageData_2[0]["content"]).valueOf());
-        for (var i = 0;  i < barrageData_2.length; i++){
+        for (var i = 0; i < barrageData_2.length; i++) {
             if (barrageData_2[i]["positionX"] < -100) {
                 barrageData_2[i]["positionX"] = rect.width;
             }
@@ -319,10 +319,7 @@ var barrageData_2 = [
 })();
 
 
-
-
-
- console.log("slider-rect: ", sliderRect);
+console.log("slider-rect: ", sliderRect);
 sliderHandle.onmousedown = function (event) {
     var that = this;
     var oldX = event.clientX;
@@ -363,20 +360,20 @@ function sendBarrage() {
     var colorSelect = document.getElementsByName("colorSelected");
     var speedSelect = document.getElementsByTagName("select")[0];
     var item = {
-        "content":"--------随机弹幕-------------.",
-        "color":"green",
-        "speed":2,
-        "textSize":20,
-        "positionX":0,
-        "positionY":0
+        "content": "--------随机弹幕-------------.",
+        "color": "green",
+        "speed": 2,
+        "textSize": 20,
+        "positionX": 0,
+        "positionY": 0
     };
 
-    if (barrage_content.value === ""){
+    if (barrage_content.value === "") {
         return;
     }
     item["content"] = barrage_content.value;
-    for (var i = 0;i< colorSelect.length;i++){
-        if (colorSelect[i].checked){
+    for (var i = 0; i < colorSelect.length; i++) {
+        if (colorSelect[i].checked) {
             item["color"] = colorSelect[i].value;
             console.log(colorSelect[i].value);
         }

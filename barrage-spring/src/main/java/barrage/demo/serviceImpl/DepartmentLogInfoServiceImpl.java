@@ -1,6 +1,6 @@
 //package barrage.demo.serviceImpl;
 //
-//import barrage.demo.entity.DepartmentLogInfo;
+//import barrage.demo.barrageapi.entity.DepartmentLogInfo;
 //import barrage.demo.mapper.DepartmentLogInfoMapper;
 //import barrage.demo.service.DepartmentLogInfoService;
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@
 //import org.springframework.data.domain.Pageable;
 //import org.springframework.stereotype.Service;
 //import org.springframework.transaction.annotation.Transactional;
-//import tk.mybatis.mapper.entity.Example;
+//import tk.mybatis.mapper.barrageapi.entity.Example;
 //
 //import java.util.List;
 //

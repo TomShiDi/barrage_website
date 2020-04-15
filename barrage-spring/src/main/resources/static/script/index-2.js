@@ -29,7 +29,9 @@ var index = 1;//数据库弹幕表分页页码
 
 var deviceType = goPAGE();
 
-var I = 0;//右键弹幕的id
+let I = 0;//右键弹幕的id
+
+let isStart = true;
 sliderHandle.style.left = "0px";
 
 
@@ -79,20 +81,31 @@ barrageData_2 = barrageData_2.concat();
     var timer = setInterval(function (args) {
         if (barrageData_2.length <= 0) {
             console.log("barrageData:", barrageData_2);
-            regularGetBarrage();
+            console.log("isStart", isStart);
+            if (isStart) {
+                regularGetBarrage();
+            }
             return;
         }
         sendBarrage(barrageData_2[0]["barrageId"], barrageData_2[0]["content"], barrageData_2[0]["color"], barrageData_2[0]["speed"], barrageData_2[0]["textSize"], barrageData_2[0]["road"]);
         barrageData_2.splice(0, 1);
     }, 1000);
-
-
 })();
 
 
 window.onload = function (ev) {
     document.getElementsByClassName("menu-item")[0].onclick = report;//TODO
-}
+    let imageArea = document.querySelector(".tipImgArea>img");
+    imageArea.style.width = document.body.clientWidth + "px";
+    imageArea.style.height = document.body.clientHeight + "px";
+    if (document.body.clientWidth <= 480) {
+        isStart = false;
+    }
+    // document.querySelector(".tipImgArea").onclick = function (e) {
+    //     document.body.style.webkitTransform = "rotate(90deg)";
+    //     document.body.style.transform = "rotate(90deg)";
+    // }
+};
 
 /**
  * 鼠标指定弹幕事件函数
@@ -119,20 +132,19 @@ function onMouseLeave(event) {
  * @param event
  */
 function mouseClicked(event) {
-    var barrage = event.valueOf();
-    var barrageInfoArea = barrage.childNodes[1];
+    let barrage = event.valueOf();
+    let barrageInfoArea = barrage.childNodes[1];
     console.log("childList", barrageInfoArea.childNodes);
     // barrage.classList.add("barrage-clicked");
     // barrage.childNodes[1].setAttribute("src", "/pic/star-active.png");
     // barrage.childNodes[3].innerHTML = parseInt(barrage.childNodes[3].innerHTML) + 1;
 
-    if(barrageInfoArea.classList.contains("barrage-info-area-clicked"))
-    {
+    if (barrageInfoArea.classList.contains("barrage-info-area-clicked")) {
         barrageInfoArea.classList.remove("barrage-info-area-clicked");
         barrageInfoArea.childNodes[1].setAttribute("src", "/pic/star.png");
         barrageInfoArea.childNodes[3].innerHTML = parseInt(barrageInfoArea.childNodes[3].innerHTML) - 1;
         unstar(barrageInfoArea);
-    }else{
+    } else {
         barrageInfoArea.classList.add("barrage-info-area-clicked");
         barrageInfoArea.childNodes[1].setAttribute("src", "/pic/star-active.png");
         barrageInfoArea.childNodes[3].innerHTML = parseInt(barrageInfoArea.childNodes[3].innerHTML) + 1;
@@ -143,8 +155,8 @@ function mouseClicked(event) {
 
 
 /**
- * 弹幕发送处理函数
- * @param index
+ * 屏幕弹幕显示处理函数
+ * @param barrageId 编号
  * @param content 弹幕内容
  * @param colorSelected 选择的颜色
  * @param speedNum 弹幕速度
@@ -487,8 +499,8 @@ function unstar(option) {
         type: "get",
         dataType: "json",
         url: "/barrage/unstar?barrageId=" + barrageId,
-        complete:function (ev) {
-            if (ev.status == 200){
+        complete: function (ev) {
+            if (ev.status == 200) {
                 $.messager.show({
                     title: "系统提示",
                     msg: "取消点赞成功",
@@ -548,3 +560,15 @@ function goPAGE() {
         return "pc";
     }
 }
+
+window.onresize = function (ev) {
+    let imageDom = document.querySelector(".tipImgArea>img");
+    imageDom.style.width = document.body.clientWidth + "px";
+    imageDom.style.height = document.body.clientHeight + "px";
+    if (document.body.clientWidth <= 480) {
+        isStart = false;
+    } else {
+        isStart = true;
+    }
+    // console.log(imageDom);
+};

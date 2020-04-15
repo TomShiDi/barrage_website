@@ -19,6 +19,7 @@ public class PanSearchController {
 
     /**
      * 请求网盘服务器获取数据
+     *
      * @param q 查询的关键字
      * @param p 页码
      * @return
@@ -31,8 +32,8 @@ public class PanSearchController {
     })
     @ApiResponse(code = 200, message = "查询成功")
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String panSearch(@RequestParam(name = "q",defaultValue = "11")String q,
-                            @RequestParam(name = "p",defaultValue = "1")Integer p) throws Exception{
+    public String panSearch(@RequestParam(name = "q", defaultValue = "11") String q,
+                            @RequestParam(name = "p", defaultValue = "1") Integer p) throws Exception {
         Gson gson = new Gson();
         q = URLEncoder.encode(q);
         String url = "http://106.15.195.249:8011/search_new?q=" + q + "&p=" + p;

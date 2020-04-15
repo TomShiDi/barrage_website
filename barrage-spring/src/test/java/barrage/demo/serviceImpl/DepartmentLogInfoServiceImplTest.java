@@ -1,6 +1,6 @@
 //package barrage.demo.serviceImpl;
 //
-//import barrage.demo.entity.DepartmentLogInfo;
+//import barrage.demo.barrageapi.entity.DepartmentLogInfo;
 //import barrage.demo.service.DepartmentLogInfoService;
 //import org.junit.Assert;
 //import org.junit.Test;

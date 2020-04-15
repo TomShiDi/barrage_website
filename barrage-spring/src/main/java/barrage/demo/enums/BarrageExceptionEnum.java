@@ -1,9 +1,17 @@
 package barrage.demo.enums;
 
+/**
+ * @Author TomShiDi
+ * @Date 2020年3月25日13:55:26
+ * @Description
+ */
 public enum BarrageExceptionEnum {
 
 
-    TOP_EXCEPTION(0,"顶级异常"),
+    /**
+     * 项目异常枚举
+     */
+    TOP_EXCEPTION(0, "顶级异常"),
     USER_INFO_SAVE_ERROR(1, "用户信息保存错误"),
     BARRAGE_INFO_QUERY_ERROR(2, "弹幕id不存在"),
     BARRAGE_INFO_SAVE_ERROR(3, "弹幕信息保存错误"),
@@ -12,7 +20,12 @@ public enum BarrageExceptionEnum {
     REFLECTION_SAVE_ERROR(6, "映射关系保存失败"),
     BARRAGE_SUBMIT_FORM_ERROR(20, "弹幕提交表单错误"),
     GET_BARRAGE_ERROR(21, "获取弹幕数据失败"),
-    ;
+    USER_INFO_NOT_FOUND(8, "没有找到用户信息"),
+    LOGIN_INFO_INVALID(23, "信息不全"),
+    LOGIN_SUCCESS(24, "登录成功"),
+    LOGIN_FAILED(25, "账号或密码错误"),
+    REGISTER_SUCCESS(26, "注册成功"),
+    REGISTER_FAILED(27, "注册失败"),;
 
 
     private Integer code;

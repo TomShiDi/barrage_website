@@ -40,7 +40,10 @@ public class UserInfoServiceImpl implements UserInfoService {
         return userInfo;
     }
 
-
+    @Override
+    public UserInfo findByUserEmail(String userEmail) {
+        return repository.findByUserEmail(userEmail);
+    }
 
     @Override
     public void deleteByUserId(Integer userId) {
@@ -55,5 +58,19 @@ public class UserInfoServiceImpl implements UserInfoService {
         }
 
         return result;
+    }
+
+    @Override
+    public UserInfo updateUserInfo(UserInfo userInfo) {
+        UserInfo result = repository.findByUserId(userInfo.getUserId());
+        if (result == null) {
+            throw new BarrageException(BarrageExceptionEnum.USER_INFO_NOT_FOUND);
+        }
+        return repository.save(userInfo);
+    }
+
+    @Override
+    public int updateUserAccountStatus(String userEmail, Integer status) {
+        return repository.updateUserAccountStatus(userEmail, status);
     }
 }

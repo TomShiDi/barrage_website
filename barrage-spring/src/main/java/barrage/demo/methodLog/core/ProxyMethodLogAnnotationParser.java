@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ProxyMethodLogAnnotationParser implements AnnotationParserMeta,MethodInterceptor {
+public class ProxyMethodLogAnnotationParser implements AnnotationParserMeta, MethodInterceptor {
 
     private Set<Class<?>> candidateClassSet;
 
@@ -33,8 +33,8 @@ public class ProxyMethodLogAnnotationParser implements AnnotationParserMeta,Meth
         doParse();
     }
 
-    public ProxyMethodLogAnnotationParser(Class<?> pointedClass,Class<? extends Annotation> pointedAnnotationClass) {
-        this(new HashSet<Class<?>>(2){
+    public ProxyMethodLogAnnotationParser(Class<?> pointedClass, Class<? extends Annotation> pointedAnnotationClass) {
+        this(new HashSet<Class<?>>(2) {
             {
                 super.add(pointedClass);
             }

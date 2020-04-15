@@ -4,8 +4,7 @@ public enum SocketResponseEnum {
 
     SUCCESS_RECEIVE_RESPONSE(1),
     GET_ONLINE_COUNT(100),
-    MESSAGE_RESPONSE(200),
-    ;
+    MESSAGE_RESPONSE(200),;
 
     private Integer code;
 

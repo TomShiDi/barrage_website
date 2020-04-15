@@ -15,7 +15,7 @@ import io.netty.util.concurrent.GlobalEventExecutor;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class WebSocketServer implements IWebSocketService,HttpService{
+public class WebSocketServer implements IWebSocketService, HttpService {
 
     private static final String HN_HTTP_CODEC = "HN_HTTP_CODEC";//http请求数据解析handler的key字段
     private static final String HN_HTTP_AGGREGATOR = "HN_HTTP_AGGREGATOR";//解析请求中的数据内容并生成FullHttpRequest的Handler的key字段
@@ -94,6 +94,7 @@ public class WebSocketServer implements IWebSocketService,HttpService{
      * websocket之所以普及这么快的一个原因就是它兼容http协议，表现为建立websocket连接的第一次请求是http请求，
      * 但不是普通的http请求，是一个协议切换请求。
      * 因此，这个函数就是用来处理来自客户端的建立连接请求的
+     *
      * @param ctx 当前请求channel的上下文对象，可以获取当前请求channel
      * @param req netty封装的httprequest对象，主要功能和servlet中的差不多
      */
@@ -126,7 +127,8 @@ public class WebSocketServer implements IWebSocketService,HttpService{
 
     /**
      * 处理websocket的各种形式的数据帧
-     * @param ctx 当前请求的上下文
+     *
+     * @param ctx   当前请求的上下文
      * @param frame websocket的数据帧对象
      */
     @Override

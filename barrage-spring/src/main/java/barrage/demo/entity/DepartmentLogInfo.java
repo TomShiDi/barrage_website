@@ -1,4 +1,4 @@
-//package barrage.demo.entity;
+//package barrage.demo.barrageapi.entity;
 //
 //import java.util.Date;
 //import javax.persistence.*;

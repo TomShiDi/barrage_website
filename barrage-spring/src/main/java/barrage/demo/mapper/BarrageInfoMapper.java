@@ -23,7 +23,7 @@ public interface BarrageInfoMapper {
 
     List<BarrageInfo> findBySenderId(@Param("senderId") Integer senderId);
 
-    List<BarrageInfo> getBarragePageByIndex(@Param("index") int index,@Param("pageSize") int pageSize);
+    List<BarrageInfo> getBarragePageByIndex(@Param("index") int index, @Param("pageSize") int pageSize);
 
     int saveBarrageInfo(BarrageInfo barrageInfo);
 

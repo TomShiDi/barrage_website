@@ -1,6 +1,6 @@
 //package barrage.demo.mapper;
 //
-//import barrage.demo.entity.DepartmentLogInfo;
+//import barrage.demo.barrageapi.entity.DepartmentLogInfo;
 //import org.apache.ibatis.annotations.Param;
 //import org.springframework.stereotype.Repository;
 //import tk.mybatis.mapper.common.Mapper;

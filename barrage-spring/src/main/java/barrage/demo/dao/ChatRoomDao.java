@@ -33,7 +33,7 @@ public class ChatRoomDao {
         this.confirmNickName = confirmNickName;
     }
 
-    public ChatRoomDao code(Integer code){
+    public ChatRoomDao code(Integer code) {
         this.code = code;
         return this;
     }

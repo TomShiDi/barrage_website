@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * @Author TomShiDi
  */
-public class BarrageDao {
+public class BarrageDto {
 
     private String message;
 

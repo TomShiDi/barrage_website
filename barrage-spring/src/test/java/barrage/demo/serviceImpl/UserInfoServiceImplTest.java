@@ -1,6 +1,7 @@
 package barrage.demo.serviceImpl;
 
 import barrage.demo.entity.UserInfo;
+import barrage.demo.enums.AuthEnums;
 import barrage.demo.service.UserInfoService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -19,7 +20,6 @@ public class UserInfoServiceImplTest {
 
     @Autowired
     private UserInfoService userInfoService;
-
 
 
     public UserInfoServiceImplTest() {
@@ -54,9 +54,29 @@ public class UserInfoServiceImplTest {
         userInfo.setNickName("TomShiDi");
         userInfo.setUserSex("男");
         userInfo.setPhoneNum("123456879");
+        userInfo.setUserEmail("1341109792@qq.com");
         userInfo.setUserDescription("修改测试");
-        userInfo.setUserId(1);
+//        userInfo.setUserId(1);
         UserInfo result = userInfoService.saveUserInfo(userInfo);
         Assert.assertNotNull(result);
+    }
+
+    @Test
+    public void updateUserInfo() {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setNickName("TomShiDi");
+        userInfo.setUserSex("男");
+        userInfo.setPhoneNum("123456879");
+        userInfo.setUserEmail("1111111");
+        userInfo.setUserDescription("修改测试");
+        userInfo.setUserId(172);
+        UserInfo result = userInfoService.saveUserInfo(userInfo);
+        assertNotNull(result);
+    }
+
+    @Test
+    public void updateUserAccountStatus() {
+        int result = userInfoService.updateUserAccountStatus("1341109792@qq.com ", AuthEnums.STATUS_ACTIVATION.getCode());
+        assertNotEquals(result, 0);
     }
 }
