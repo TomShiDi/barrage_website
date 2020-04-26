@@ -6,10 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class BarrageInfo {
+public class BarrageInfo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

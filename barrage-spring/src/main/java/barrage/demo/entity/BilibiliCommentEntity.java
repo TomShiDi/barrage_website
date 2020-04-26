@@ -1,8 +1,9 @@
 package barrage.demo.entity;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class BilibiliCommentEntity {
+public class BilibiliCommentEntity implements Serializable {
 
     private String code;
 

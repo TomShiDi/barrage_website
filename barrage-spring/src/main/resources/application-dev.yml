@@ -1,5 +1,9 @@
 
 spring:
+  cache:
+    type: redis
+#    ehcache:
+#      config: classpath:ehcache.xml
   jpa:
     database-platform: org.hibernate.dialect.MySQL5Dialect
     show-sql: true
@@ -14,13 +18,13 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   mail:
 #    qq邮箱配置
-#    host: smtp.qq.com
-#    username: 2359536639@qq.com
-#    password: xwfchyeomxetebag
+    host: smtp.qq.com
+    username: 2359536639@qq.com
+    password: xwfchyeomxetebag
 #      163邮箱配置
-    host: smtp.163.com
-    username: 18711660142@163.com
-    password: PNXHHVADFJSKLSRZ
+#    host: smtp.163.com
+#    username: 18711660142@163.com
+#    password: PNXHHVADFJSKLSRZ
     default-encoding: UTF-8
     properties:
       mail:
@@ -64,6 +68,7 @@ spring:
     database: 0
     host: localhost
     port: 6379
+
 server:
   port: 8080
   servlet:
@@ -90,6 +95,10 @@ ipRecordFilePath: D://barrage-site-visitor.txt
 defaultScannedPackage: barrage.demo
 
 register-topic: topic_register
+
+auth-url: http://127.0.0.1:8080/register/activate
+
+index-url: http://localhost:8080/
 
 login:
   userKey: tomshidi/

@@ -2,8 +2,6 @@ package barrage.demo.utils;
 
 import barrage.demo.entity.BilibiliCommentEntity;
 import com.google.gson.Gson;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -19,7 +17,6 @@ public class BilibiliJsonUtil {
 
     private static long timePre = 10800000L;
 
-    //    private static String filePath;
     private static String filePath = "D:/bilibiliComment";
 
     @SuppressWarnings("unchecked")

@@ -1,26 +1,35 @@
 package barrage.demo.aspect;
 
+import barrage.demo.constance.CookieConstance;
+import barrage.demo.redis.DefaultRedisComponent;
+import barrage.demo.utils.CookieUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @Aspect
 @Component
 @PropertySource({"classpath:application.yml"})
 public class BaseAspect {
+
+    private DefaultRedisComponent defaultRedisComponent;
 
     @Value("${allowedOrigin}")
     private String allowedOrigin;
@@ -28,8 +37,18 @@ public class BaseAspect {
     @Value("${ipRecordFilePath}")
     private String ipRecordFile;
 
+    @Value("${index-url}")
+    private String indexUrl;
 
-    @Pointcut("execution(public * barrage.demo.controller.*.*(..))")
+    @Autowired
+    public BaseAspect(DefaultRedisComponent defaultRedisComponent) {
+        this.defaultRedisComponent = defaultRedisComponent;
+    }
+
+    @Pointcut("execution(public * barrage.demo.controller.*.*(..)) " +
+            "&& !execution(public * barrage.demo.controller.TestController.*(..))" +
+            "&& !execution(public * barrage.demo.controller.RegisterController.*(..))" +
+            "&& !execution(public * barrage.demo.controller.AuthController.*(..))")
     public void basePointCut() {
 
     }
@@ -65,6 +84,8 @@ public class BaseAspect {
         if (ip != null && !ip.isEmpty()) {
             writeIpToFile(ip);
         }
+
+        judgeLoginStatus(request, response);
     }
 
     private void writeIpToFile(String ip) throws Exception {
@@ -80,4 +101,23 @@ public class BaseAspect {
         bufferedOutputStream.close();
         fileOutputStream.close();
     }
+
+    private void judgeLoginStatus(HttpServletRequest request,HttpServletResponse response) throws Exception{
+//        List<Map.Entry<String, Cookie>> entryList = CookieUtil.getAuthCookies(request);
+        String email = null;
+        String redisToken = null;
+        String cookieToken = null;
+
+        Cookie cookieEmail = CookieUtil.getCookie(request, CookieConstance.COOKIE_EMAIL_NAME);
+        Cookie cookieLk = CookieUtil.getCookie(request, CookieConstance.LOGIN_COOKIE_NAME);
+        email = cookieEmail == null ? null : cookieEmail.getValue();
+        redisToken = defaultRedisComponent.getStringValue(email);
+        cookieToken = cookieLk == null ? null : cookieLk.getValue();
+        System.out.println("path:" + request.getRequestURI());
+        if (redisToken == null || !redisToken.equals(cookieToken)) {
+            response.sendRedirect(indexUrl);
+        }
+
+    }
 }
+

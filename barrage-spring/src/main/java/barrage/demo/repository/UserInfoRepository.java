@@ -15,6 +15,8 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, Integer> {
 
     UserInfo findByUserPhoneNum(String userPhoneNum);
 
+    UserInfo findByUserEmailAndUserStatus(String userEmail,Integer status);
+
     UserInfo findByUserEmail(String userEmail);
 
     void deleteByUserId(Integer userId);

@@ -62,6 +62,10 @@
     <div class="auth-code-area">
     ${authCode!""}
     </div>
+    <div>
+        激活地址<br>
+        <a href="${authUrl}?email=${userEmail!""}&authCode=${authCode!""}">${authUrl}?email=${userEmail!""}&authCode=${authCode!""}</a>
+    </div>
 </div>
 </body>
 </html>

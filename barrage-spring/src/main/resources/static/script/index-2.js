@@ -32,6 +32,7 @@ var deviceType = goPAGE();
 let I = 0;//右键弹幕的id
 
 let isStart = true;
+let isContentEnd = false;
 sliderHandle.style.left = "0px";
 
 
@@ -450,23 +451,28 @@ function saveBarrage() {
  * 后台弹幕数据拉取函数
  */
 function regularGetBarrage() {
-    $.ajax({
-        url: "/barrage/getData?index=" + index,
-        type: "get",
-        dataType: "json",
-        complete: function (ev) {
-            if (ev.status == 200) {
-                // console.log("regular", ev.responseText);
-                var data = JSON.parse(ev.responseText);
-                barrageData_2 = barrageData_2.concat(data["resultData"]["barrageInfoPage"]["content"]);
-                console.log("regular", barrageData_2);
-                index++;
-                // console.log(data["resultData"]["barrageInfoPage"]["content"]);
-            } else {
-                console.log("error", ev.responseText);
+    if (!isContentEnd) {
+        $.ajax({
+            url: "/barrage/getData?index=" + index,
+            type: "get",
+            dataType: "json",
+            complete: function (ev) {
+                if (ev.status == 200) {
+                    // console.log("regular", ev.responseText);
+                    var data = JSON.parse(ev.responseText);
+                    if (data["resultData"]["barrageInfoPage"]["content"].length === 0) {
+                        isContentEnd = true;
+                    }
+                    barrageData_2 = barrageData_2.concat(data["resultData"]["barrageInfoPage"]["content"]);
+                    console.log("regular", barrageData_2);
+                    index++;
+                    // console.log(data["resultData"]["barrageInfoPage"]["content"]);
+                } else {
+                    console.log("error", ev.responseText);
+                }
             }
-        }
-    });
+        });
+    }
 }
 
 /**

@@ -54,6 +54,7 @@ public class UserInfoServiceImplTest {
         userInfo.setNickName("TomShiDi");
         userInfo.setUserSex("男");
         userInfo.setPhoneNum("123456879");
+        userInfo.setUserPassword("123456");
         userInfo.setUserEmail("1341109792@qq.com");
         userInfo.setUserDescription("修改测试");
 //        userInfo.setUserId(1);

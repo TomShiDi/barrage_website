@@ -5,11 +5,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class UserInfo {
+public class UserInfo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,7 +25,6 @@ public class UserInfo {
     @NotEmpty(message = "性别不能为空")
     private String userSex;
 
-    @NotEmpty(message = "手机号不能为空")
     private String userPhoneNum;
 
     private String userDescription;

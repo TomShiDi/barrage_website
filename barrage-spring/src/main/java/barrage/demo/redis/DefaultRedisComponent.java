@@ -17,9 +17,8 @@ import java.util.concurrent.locks.ReentrantLock;
 public class DefaultRedisComponent {
     private StringRedisTemplate stringRedisTemplate;
 
-    private long timeout = 300;
+    private long timeout = 3600;
 
-    private String HASHMAP_NAME = "auth_code_map";
 
     @Autowired
     public DefaultRedisComponent(StringRedisTemplate stringRedisTemplate) {
@@ -37,19 +36,31 @@ public class DefaultRedisComponent {
         return setAsKeyValue(key, value, timeout);
     }
 
+    /**
+     * 以key-value的形式设置
+     * @param key 键
+     * @param value 值
+     * @param expire 过期时间
+     * @return 是否成功
+     */
     public boolean setAsKeyValue(String key, String value, long expire) {
         if (value == null || key == null) {
             return false;
         }
-        return stringRedisTemplate.opsForValue().setIfAbsent(key, value, expire, TimeUnit.SECONDS);
+        stringRedisTemplate.opsForValue().set(key, value, expire, TimeUnit.SECONDS);
+        return true;
     }
 
+    /**
+     * 获取key对应的值
+     * @param key 键名
+     * @return 值
+     */
     public String getStringValue(String key) {
         if (key == null) {
             return null;
         }
-        String value = stringRedisTemplate.opsForValue().getAndSet(key, "");
-        stringRedisTemplate.opsForValue().getOperations().delete(key);
+        String value = stringRedisTemplate.opsForValue().get(key);
         return value;
     }
 

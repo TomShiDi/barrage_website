@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
@@ -22,8 +23,8 @@ import java.sql.ResultSet;
  */
 @SpringBootApplication
 @EnableJpaAuditing
+@EnableCaching
 //@EnableSwagger2
-//@MapperScan("barrage.demo.mapper")
 //@MapperScan("barrage.demo.mapper")
 @EnableMethodLog(scannedPkgName = "barrage.demo.methodlog")
 public class DemoApplication implements ApplicationContextAware {

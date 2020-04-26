@@ -6,13 +6,21 @@ import barrage.demo.exception.BarrageException;
 import barrage.demo.repository.UserInfoRepository;
 import barrage.demo.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * @Author Tomshidi
+ * @Date 2020年4月16日13:06:54
+ * @Description
+ */
 @Service
-@Transactional
+@Transactional(rollbackFor = RuntimeException.class)
 public class UserInfoServiceImpl implements UserInfoService {
 
     private UserInfoRepository repository;
@@ -22,44 +30,66 @@ public class UserInfoServiceImpl implements UserInfoService {
         this.repository = repository;
     }
 
+    @Cacheable(cacheNames = "myCache",keyGenerator = "keyGenerator")
     @Override
     public UserInfo findByUserId(Integer userId) {
         UserInfo userInfo = repository.findByUserId(userId);
         return userInfo;
     }
 
+    @Cacheable(cacheNames = "myCache",keyGenerator = "keyGenerator")
     @Override
     public List<UserInfo> findByNickName(String nickName) {
         List<UserInfo> userInfoList = repository.findByNickName(nickName);
         return userInfoList;
     }
 
+    @Cacheable(cacheNames = "myCache",keyGenerator = "keyGenerator")
     @Override
     public UserInfo findByUserPhoneNum(String phoneNum) {
         UserInfo userInfo = repository.findByUserPhoneNum(phoneNum);
         return userInfo;
     }
 
+    @Cacheable(cacheNames = "myCache",keyGenerator = "keyGenerator")
     @Override
     public UserInfo findByUserEmail(String userEmail) {
         return repository.findByUserEmail(userEmail);
     }
 
+    @Cacheable(cacheNames = "myCache",keyGenerator = "keyGenerator")
+    @Override
+    public UserInfo findByUserEmailAndStatus(String userEmail,Integer status) {
+        return repository.findByUserEmailAndUserStatus(userEmail,status);
+    }
+
+
     @Override
     public void deleteByUserId(Integer userId) {
+        UserInfo userInfo = repository.findByUserId(userId);
+        if (userInfo == null) {
+            throw new BarrageException(BarrageExceptionEnum.USER_INFO_NOT_FOUND);
+        }
+        deleteByUserId(userId, userInfo.getUserEmail());
+    }
+
+    @CacheEvict(cacheNames = "myCache",key = "#root.targetClass +'['+#userEmail+']'")
+    @Override
+    public void deleteByUserId(Integer userId, String userEmail) {
         repository.deleteByUserId(userId);
     }
 
+    @CachePut(cacheNames = "myCache", key = "#root.targetClass +'['+#userInfo.userEmail+']'")
     @Override
     public UserInfo saveUserInfo(UserInfo userInfo) {
         UserInfo result = repository.save(userInfo);
-        if (result == null) {
+        if (result.getUserId() == null) {
             throw new BarrageException(BarrageExceptionEnum.USER_INFO_SAVE_ERROR);
         }
-
         return result;
     }
 
+    @CachePut(cacheNames = "myCache", key = "#root.targetClass +'['+#userInfo.userEmail+']'")
     @Override
     public UserInfo updateUserInfo(UserInfo userInfo) {
         UserInfo result = repository.findByUserId(userInfo.getUserId());
@@ -69,6 +99,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         return repository.save(userInfo);
     }
 
+    @CachePut(cacheNames = "myCache", key = "#root.targetClass +'['+#userEmail+']'")
     @Override
     public int updateUserAccountStatus(String userEmail, Integer status) {
         return repository.updateUserAccountStatus(userEmail, status);

@@ -1,7 +1,11 @@
 package barrage.demo.constance;
 
 public interface CookieConstance {
-    String cookieName = "nickName";
+    String COOKIENAME = "nickName";
 
-    Integer maxAge = 3600;
+    Integer MAXAGE_MS = 3600;
+
+    String LOGIN_COOKIE_NAME = "LK";
+
+    String COOKIE_EMAIL_NAME = "M";
 }

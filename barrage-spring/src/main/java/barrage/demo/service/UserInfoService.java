@@ -22,9 +22,13 @@ public interface UserInfoService {
 
     UserInfo findByUserPhoneNum(String phoneNum);
 
+    UserInfo findByUserEmailAndStatus(String userEmail,Integer status);
+
     UserInfo findByUserEmail(String userEmail);
 
     void deleteByUserId(Integer userId);
+
+    public void deleteByUserId(Integer userId, String userEmail);
 
     UserInfo saveUserInfo(UserInfo userInfo);
 

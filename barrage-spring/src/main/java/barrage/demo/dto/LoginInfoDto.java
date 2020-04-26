@@ -15,7 +15,7 @@ public class LoginInfoDto implements Serializable {
     @NotEmpty(message = "密码不能为空")
     private String password;
 
-    @NotEmpty(message = "验证码不能为空")
+//    @NotEmpty(message = "验证码不能为空")
     private String authCode;
 
     public String getUserName() {
