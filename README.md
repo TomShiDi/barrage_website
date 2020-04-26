@@ -4,7 +4,7 @@
 
 ## 使用框架介绍
 + 前端：
- + 原生**javascript**,**html5**,**css3**,以及**jQuery**,**bootsctrap**
+ + 原生**javascript**,**html5**,**css3**,以及**jQuery**,**bootstrap**
 
 + 后端:
  + **springboot2.0** **mysql** **JpaRepository** **freemarker** **Mybatis** **Kafka** **Redis**
