@@ -160,8 +160,9 @@ body, html {
         width: calc(2.9vw);
         height: calc(3.3vh);
         text-align: center;
+        /*vertical-align: middle;*/
         font-size: 20px;
-        top: calc(1.1vh);
+        /*top: calc(1.1vh);*/
     }
 
     #canvas-1 {
@@ -228,8 +229,10 @@ body, html {
     .side-menu .nav-text {
         position: relative;
         display: table-cell;
-        vertical-align: middle;
+        /*vertical-align: bottom;*/
+        text-align: center;
         width: calc(9.9vw);
+        height: calc(3.3vh);
         font-family: 'Titillium Web', sans-serif;
     }
 
@@ -600,7 +603,7 @@ body, html {
         height: calc(3.3vh);
         text-align: center;
         font-size: calc(1.8vh);
-        top: calc(1.1vh);
+        /*top: calc(1.1vh);*/
     }
 
     #canvas-1 {
@@ -667,8 +670,10 @@ body, html {
     .side-menu .nav-text {
         position: relative;
         display: table-cell;
-        vertical-align: middle;
+        /*vertical-align: middle;*/
+        text-align: center;
         width: calc(9.9vw);
+        height: calc(3.3vh);
         font-family: 'Titillium Web', sans-serif;
     }
 
