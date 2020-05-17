@@ -58,6 +58,7 @@ public class BarrageInfoController {
 
         BarrageDto barrageDto = new BarrageDto();
         barrageDto.setMessage("success");
+        barrageDto.setCode(200);
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("barrageInfo", barrageInfo);
         barrageDto.setResultData(resultMap);
