@@ -52,8 +52,9 @@ function buttonClick() {
             p: 1
         },
         complete: function (response) {
-            if (response.status == 200) {
-                var data = JSON.parse(response.responseText);
+            debugger;
+            if (response.status === 200 && response.responseJSON.code == 200) {
+                var data = JSON.parse(response.responseJSON.data);
                 itemCount = Math.ceil(parseInt(data["list"]["count"]) / 10);
                 initButtonStatus(itemCount);
                 console.log("itemCount", itemCount);
@@ -62,7 +63,7 @@ function buttonClick() {
                 if (searchInfoArray.length > 0) {
                     searchContent.innerHTML = "";
                 }
-                while (searchInfoArray.length > 0) {
+                while (searchInfoArray.length > 1) {
 
                     var item = document.createElement("div");
                     item.setAttribute("class", "search-item");

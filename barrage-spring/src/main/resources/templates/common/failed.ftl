@@ -9,7 +9,7 @@
 <div class="container container-md container-lg">
     <div class="row clearfix">
         <div class="col-md-12 col-sm-6 col-lg-12 column">
-            <div class="alert alert-success alert-dismissable">
+            <div class="alert alert-warning alert-dismissable">
                 <!--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>-->
                 <h4>
                     请尝试重新激活!

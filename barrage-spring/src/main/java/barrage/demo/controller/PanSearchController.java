@@ -1,5 +1,7 @@
 package barrage.demo.controller;
 
+import barrage.demo.builders.ResponseDtoBuilder;
+import barrage.demo.dao.CommonDto;
 import barrage.demo.utils.HttpUtil;
 import com.google.gson.Gson;
 
@@ -32,12 +34,16 @@ public class PanSearchController {
     })
     @ApiResponse(code = 200, message = "查询成功")
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String panSearch(@RequestParam(name = "q", defaultValue = "11") String q,
-                            @RequestParam(name = "p", defaultValue = "1") Integer p) throws Exception {
+    public CommonDto panSearch(@RequestParam(name = "q", defaultValue = "11") String q,
+                               @RequestParam(name = "p", defaultValue = "1") Integer p) throws Exception {
         Gson gson = new Gson();
         q = URLEncoder.encode(q);
         String url = "http://106.15.195.249:8011/search_new?q=" + q + "&p=" + p;
-        return HttpUtil.doGet(url);
+        return new ResponseDtoBuilder<>(CommonDto.class)
+                .code(200)
+                .message("success")
+                .data(HttpUtil.doGet(url))
+                .build();
 //        Map<String, Object> map = new HashMap<>();
 //        map = gson.fromJson(result, map.getClass());
 //        Object object = ((Map<String, Object>) (map.get("list"))).get("data");

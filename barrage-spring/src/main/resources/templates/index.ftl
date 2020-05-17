@@ -22,7 +22,9 @@
 <#--<canvas width="1920" height="1007" style="position: absolute; top: 0;"></canvas>-->
 <nav class="side-menu">
     <div class="settings">
-        <img class="head-icon" src="pic/head-icon-1.jpg"/>
+        <a href="/login.html">
+            <img class="head-icon" src="pic/head-icon-1.jpg"/>
+        </a>
     </div>
     <div class="menu-ul">
         <ul>

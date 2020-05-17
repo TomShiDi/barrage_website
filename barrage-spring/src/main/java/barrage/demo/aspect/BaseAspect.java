@@ -1,6 +1,8 @@
 package barrage.demo.aspect;
 
 import barrage.demo.constance.CookieConstance;
+import barrage.demo.enums.AuthEnums;
+import barrage.demo.exception.BarrageException;
 import barrage.demo.redis.DefaultRedisComponent;
 import barrage.demo.utils.CookieUtil;
 import org.aspectj.lang.JoinPoint;
@@ -45,10 +47,13 @@ public class BaseAspect {
         this.defaultRedisComponent = defaultRedisComponent;
     }
 
+//    "&& !execution(public * barrage.demo.controller.AuthController.*(..))"
     @Pointcut("execution(public * barrage.demo.controller.*.*(..)) " +
-            "&& !execution(public * barrage.demo.controller.TestController.*(..))" +
-            "&& !execution(public * barrage.demo.controller.RegisterController.*(..))" +
-            "&& !execution(public * barrage.demo.controller.AuthController.*(..))")
+        "&& !execution(public * barrage.demo.controller.TestController.*(..))" +
+        "&& !execution(public * barrage.demo.controller.RegisterController.*(..))" +
+        "&& !execution(public * barrage.demo.controller.AuthController.*(..))" +
+        "&& !execution(public * barrage.demo.controller.BarrageInfoController.*(..))"
+    )
     public void basePointCut() {
 
     }
@@ -116,8 +121,8 @@ public class BaseAspect {
         System.out.println("path:" + request.getRequestURI());
         if (redisToken == null || !redisToken.equals(cookieToken)) {
             response.sendRedirect(indexUrl);
+            throw new BarrageException(AuthEnums.AUTH_NOT_LOGIN);
         }
-
     }
 }
 

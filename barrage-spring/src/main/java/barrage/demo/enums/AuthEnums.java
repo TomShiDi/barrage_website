@@ -17,6 +17,7 @@ public enum AuthEnums {
     TRUE(5, "true"),
     FALSE(6, "false"),
     INCORRECT_ACCOUNT_INFO(7, "账号或密码错误"),
+    AUTH_NOT_LOGIN(8, "未登录"),
     ;
 
     private Integer code;

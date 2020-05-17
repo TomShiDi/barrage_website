@@ -25,14 +25,14 @@ html, body {
 
 .search-tool {
     position: relative;
-    top: 3%;
+    top: 1%;
     width: 80%;
     height: 8%;
     display: -webkit-flex;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 5%;
+    margin-top: 1%;
 }
 
 .search-input-area {
@@ -42,12 +42,12 @@ html, body {
     overflow: hidden;
 }
 
-@media screen and (min-device-width: 1920px)and (min-device-height: 1080px) {
+@media screen and (min-width: 482px){
     .search-input {
         /*outline: none;*/
         /*border: none;*/
         width: 99%;
-        height: 90%;
+        height: 85%;
         font-size: 20px;
         padding-left: 1%;
     }
@@ -109,14 +109,14 @@ html, body {
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
-        height: 8%;
+        height: 11%;
         /*width: 100%;*/
         overflow: hidden;
     }
 
     .search-item-name {
         width: 100%;
-        font-size: 17px;
+        font-size: 11px;
     }
 
     .search-item-info {
@@ -126,7 +126,7 @@ html, body {
 
     .search-item-url {
         width: 100%;
-        font-size: 15px;
+        font-size: 10px;
         color: #008000;
     }
 
@@ -188,12 +188,12 @@ html, body {
     }
 }
 
-@media screen and (max-device-width: 481px) and (max-device-height: 700px) {
+@media screen and (max-width: 481px){
     .search-input {
         /*outline: none;*/
         /*border: none;*/
         width: 99%;
-        height: 90%;
+        height: 85%;
         font-size: 2.3vw;
         padding-left: 1%;
     }

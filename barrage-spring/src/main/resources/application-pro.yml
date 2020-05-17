@@ -33,6 +33,7 @@ spring:
           starttls:
             enable: true
             required: true
+    port: 587
   kafka:
     producer:
     # 指定kafka server的地址，集群配多个，中间，逗号隔开

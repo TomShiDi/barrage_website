@@ -18,7 +18,6 @@ import static barrage.demo.config.AliPayConfig.*;
 
 
 @Controller
-@RestController("/index")
 public class IndexController {
     @GetMapping("/index")
     public ModelAndView showIndex() {

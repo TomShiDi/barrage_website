@@ -1,5 +1,6 @@
 package barrage.demo.exception;
 
+import barrage.demo.enums.AuthEnums;
 import barrage.demo.enums.BarrageExceptionEnum;
 
 public class BarrageException extends RuntimeException {
@@ -17,6 +18,12 @@ public class BarrageException extends RuntimeException {
 
         super(barrageExceptionEnum.getMessage());
         this.code = barrageExceptionEnum.getCode();
+    }
+
+    public BarrageException(AuthEnums authEnums) {
+
+        super(authEnums.getMessage());
+        this.code = authEnums.getCode();
     }
 
     public Integer getCode() {
