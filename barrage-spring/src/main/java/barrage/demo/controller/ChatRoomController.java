@@ -18,7 +18,7 @@ public class ChatRoomController {
     /**
      * 用户注册nickname，只是简单的验证然后将nickname加到response的cookie中，失效时间是1小时
      *
-     * @param nickName
+     * @param nickName 临时网名
      * @return
      */
     @GetMapping("/register")

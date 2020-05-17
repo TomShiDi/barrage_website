@@ -42,17 +42,21 @@ public class BaseAspect {
     @Value("${index-url}")
     private String indexUrl;
 
+    @Value("${login-url}")
+    private String loginUrl;
+
     @Autowired
     public BaseAspect(DefaultRedisComponent defaultRedisComponent) {
         this.defaultRedisComponent = defaultRedisComponent;
     }
 
 //    "&& !execution(public * barrage.demo.controller.AuthController.*(..))"
-    @Pointcut("execution(public * barrage.demo.controller.*.*(..)) " +
-        "&& !execution(public * barrage.demo.controller.TestController.*(..))" +
-        "&& !execution(public * barrage.demo.controller.RegisterController.*(..))" +
-        "&& !execution(public * barrage.demo.controller.AuthController.*(..))" +
-        "&& !execution(public * barrage.demo.controller.BarrageInfoController.*(..))"
+    @Pointcut(value = "execution(public * barrage.demo.controller.*.*(..)) " +
+            "&& !execution(public * barrage.demo.controller.TestController.*(..))" +
+            "&& !execution(public * barrage.demo.controller.RegisterController.*(..))" +
+            "&& !execution(public * barrage.demo.controller.AuthController.*(..))" +
+            "&& !execution(public * barrage.demo.controller.BarrageInfoController.getIndexPage(..))" +
+            "&& !execution(public * barrage.demo.controller.IndexController.*(..))"
     )
     public void basePointCut() {
 
@@ -120,8 +124,8 @@ public class BaseAspect {
         cookieToken = cookieLk == null ? null : cookieLk.getValue();
         System.out.println("path:" + request.getRequestURI());
         if (redisToken == null || !redisToken.equals(cookieToken)) {
-            response.sendRedirect(indexUrl);
-            throw new BarrageException(AuthEnums.AUTH_NOT_LOGIN);
+//            response.sendRedirect(indexUrl);
+            throw new BarrageException(AuthEnums.AUTH_NOT_LOGIN,loginUrl);
         }
     }
 }

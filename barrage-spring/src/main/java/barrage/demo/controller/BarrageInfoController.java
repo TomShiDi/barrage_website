@@ -89,6 +89,7 @@ public class BarrageInfoController {
             throw new BarrageException(BarrageExceptionEnum.GET_BARRAGE_ERROR);
         } else {
             barrageDto.setMessage("success " + "index: " + index);
+            barrageDto.setCode(200);
             Map<String, Object> resultMap = new HashMap<>();
             resultMap.put("barrageInfoPage", barrageInfoPage);
             barrageDto.setResultData(resultMap);

@@ -9,6 +9,8 @@ public class BarrageDto {
 
     private String message;
 
+    private Integer code;
+
     private Map<String, Object> resultData;
 
     public String getMessage() {
@@ -25,5 +27,13 @@ public class BarrageDto {
 
     public void setResultData(Map<String, Object> resultData) {
         this.resultData = resultData;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
     }
 }

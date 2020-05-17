@@ -1,7 +1,10 @@
 package barrage.demo.enums;
 
 public enum ChatRoomEnum {
-    SUCCESS(100),;
+    /**
+     *
+     */
+    SUCCESS(200),;
 
     private Integer code;
 

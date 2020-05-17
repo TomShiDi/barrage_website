@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-//@ControllerAdvice
+@ControllerAdvice
 public class GlobalExceptionHandler {
 
     @ResponseBody
@@ -17,6 +17,7 @@ public class GlobalExceptionHandler {
         barrageException = exception instanceof BarrageException ? (BarrageException) exception : new BarrageException(500, exception.getMessage());
         exceptionDao.setCode(barrageException.getCode());
         exceptionDao.setMessage(exception.getMessage());
+        exceptionDao.setData(barrageException.getData());
         return exceptionDao;
     }
 }

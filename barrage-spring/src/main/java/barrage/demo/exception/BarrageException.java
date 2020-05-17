@@ -9,6 +9,8 @@ public class BarrageException extends RuntimeException {
 
 //    private String message;
 
+    private Object data;
+
     public BarrageException(Integer code, String message) {
         super(message);
         this.code = code;
@@ -21,9 +23,13 @@ public class BarrageException extends RuntimeException {
     }
 
     public BarrageException(AuthEnums authEnums) {
+        this(authEnums, null);
+    }
 
+    public BarrageException(AuthEnums authEnums, Object data) {
         super(authEnums.getMessage());
         this.code = authEnums.getCode();
+        this.data = data;
     }
 
     public Integer getCode() {
@@ -32,5 +38,13 @@ public class BarrageException extends RuntimeException {
 
     public void setCode(Integer code) {
         this.code = code;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
     }
 }

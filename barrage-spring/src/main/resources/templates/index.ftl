@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
 
     <meta http-equiv="X-UA-Compatible" content=="IE=edge"/>
-<#--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>-------------</title>
     <link type="text/css" href="/script/jquery-easyui-1.7.5/themes/icon.css" rel="stylesheet">
@@ -17,9 +17,9 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css?t=1.2.8">
 </head>
 <body>
-<#--<script src="/script/three.min.js"></script>-->
-<#--<script src="/script/canvas-index.js"></script>-->
-<#--<canvas width="1920" height="1007" style="position: absolute; top: 0;"></canvas>-->
+<!--<script src="/script/three.min.js"></script>-->
+<!--<script src="/script/canvas-index.js"></script>-->
+<!--<canvas width="1920" height="1007" style="position: absolute; top: 0;"></canvas>-->
 <nav class="side-menu">
     <div class="settings">
         <a href="/login.html">

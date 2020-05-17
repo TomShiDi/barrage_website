@@ -53,7 +53,7 @@ function buttonClick() {
         },
         complete: function (response) {
             debugger;
-            if (response.status === 200 && response.responseJSON.code == 200) {
+            if (response.status === 200 && response.responseJSON.code === 200) {
                 var data = JSON.parse(response.responseJSON.data);
                 itemCount = Math.ceil(parseInt(data["list"]["count"]) / 10);
                 initButtonStatus(itemCount);
@@ -75,6 +75,9 @@ function buttonClick() {
                 }
             } else {
                 console.log("error", response.responseText);
+                if (response.responseJSON.code === 8){
+                    window.location.href = response.responseJSON.data;
+                }
             }
         }
     });

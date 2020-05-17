@@ -37,7 +37,7 @@ html, body {
 
 .search-input-area {
     width: 60%;
-    height: 50%;
+    height: 55%;
     /*margin-right: 4px;*/
     overflow: hidden;
 }
@@ -54,7 +54,7 @@ html, body {
 
     .search-button-area {
         width: 12%;
-        height: 50%;
+        height: 55%;
     }
 
     .search-button {
@@ -200,7 +200,7 @@ html, body {
 
     .search-button-area {
         width: 15%;
-        height: 50%;
+        height: 55%;
     }
 
     .search-button {

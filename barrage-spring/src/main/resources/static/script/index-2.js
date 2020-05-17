@@ -438,10 +438,14 @@ function saveBarrage() {
         complete: function (ev) {
             // console.log(ev);
             content.value = "";
-            if (ev.status === 200) {
+            // debugger;
+            if (ev.status === 200&& ev.responseJSON.code === 200) {
                 console.log(ev.responseText);
             } else {
                 console.log("error", ev.responseText);
+                if (ev.responseJSON.code === 8) {
+                    window.location.href = ev.responseJSON.data;
+                }
             }
         }
     });

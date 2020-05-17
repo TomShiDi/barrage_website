@@ -90,9 +90,11 @@ defaultScannedPackage: barrage.demo
 
 register-topic: topic_register
 
-auth-url: http://120.77.222.242:8080/register/activate
+auth-url: https://120.77.222.242/register/activate
 
-index-url: http://120.77.222.242:8080/
+index-url: https://120.77.222.242/
+
+login-url: https://120.77.222.242/login.html
 
 bilibiliApiUrl: https://api.bilibili.com/x/v2/reply
 
