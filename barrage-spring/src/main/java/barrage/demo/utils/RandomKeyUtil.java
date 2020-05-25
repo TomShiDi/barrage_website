@@ -20,13 +20,6 @@ public class RandomKeyUtil {
      * @return 随机码字符串
      */
     public static String getRandomNum() {
-        if (random == null) {
-            synchronized (RandomKeyUtil.class) {
-                if (random == null) {
-                    random = new Random();
-                }
-            }
-        }
         return getRandomNum(6);
     }
 
@@ -37,6 +30,13 @@ public class RandomKeyUtil {
      * @return 指定长度的随机码字符串
      */
     public static String getRandomNum(int length) {
+        if (random == null) {
+            synchronized (RandomKeyUtil.class) {
+                if (random == null) {
+                    random = new Random();
+                }
+            }
+        }
         StringBuffer stringBuffer = new StringBuffer();
         for (int i = 0; i < length; i++) {
             stringBuffer.append(random.nextInt(bound));
