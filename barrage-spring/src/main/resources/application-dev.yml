@@ -103,6 +103,8 @@ index-url: http://localhost:8080/
 
 login-url: http://localhost:8080/login.html
 
+socket-url: ws://localhost:9999/
+
 login:
   userKey: tomshidi/
 

@@ -103,7 +103,8 @@ filePath: /usr/bilibiliComment
 allowedOrigin: https://selltom.mynatapp.cc
 
 ipRecordFilePath: /usr/barrage-site-visitor.txt
-#ipRecordFilePath: D://barrage-site-visitor.txt
+
+socket-url: wss://120.77.222.242:9990
 
 login:
   userKey: tomshidi/

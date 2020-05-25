@@ -9,65 +9,16 @@ var messageSendingSuccessCode = 1;//服务端自定义的：客户端消息发�
 var cookieLoginNameKey = "nickName";//用户nickname保存在cookie中的key字段
 var registerSuccessCode = 100;//用户的nickname提交服务端成功的code
 var nickName = "";//用户的nickname
+
+let inited = false;
+let socketUrl = "";
 /**
  * 页面加载结束事件回调函数,主要用来建立socket连接和设置它的回调方法
  * @param ev
  */
 window.onload = function (ev) {
     console.log("event", "window onload");
-    //建立websocket连接
-    if (window.WebSocket) {
-        if (socket == null) {
-            socket = new WebSocket("wss://120.77.222.242:9990");
-        }
-    } else {
-        alert("您的浏览器不支持socket");
-        return;
-    }
-    //连接建立成功的回调函数
-    socket.onopen = function (e) {
-        // setInterval()
-    };
-    //接收到服务端的消息时的回调函数
-    socket.onmessage = function (e) {
-        // console.log("message", JSON.parse(e.data));
-        var receiveData = JSON.parse(e.data);
-        if (receiveData["methodCode"] === refreshCode) {
-            refreshOnlineCount(receiveData["onlineCount"]);
-        } else if (receiveData["methodCode"] === messageCode) {
-            receiveMessage(JSON.parse(receiveData["sendingMessage"])["nickName"], JSON.parse(receiveData["sendingMessage"])["message"]);
-        } else if (receiveData["methodCode"] === messageSendingSuccessCode) {
-            sendingMessageSuccess();
-        }
-    };
-    //发生错误时的回调函数
-    socket.onerror = function (e) {
-        console.log("error", e);
-    };
-    //连接关闭时的回调函数
-    socket.onclose = function (e) {
-        console.log("close", e);
-        console.log("closed socket", socket);
-        setTimeout(function () {
-            if (socket != null && socket.readyState === 3) {
-                socket = new WebSocket("wss://120.77.222.242:9990");
-            }
-        }, 300);
-        // alert("连接断开");
-    };
-
-    // console.log("cookie", document.cookie.search(cookieLoginNameKey));
-    if (document.cookie.search(cookieLoginNameKey) === -1) {
-        document.querySelector(".signWindow").style.display = "block";
-    } else {
-        var params = document.cookie.split(";");
-        for (var i in params) {
-            if (params[i].search(cookieLoginNameKey) !== -1) {
-                nickName = params[i].split("=")[1];
-            }
-        }
-    }
-
+    doInitGet();
 };
 
 /**
@@ -89,7 +40,7 @@ loginButton.addEventListener("click", function (e) {
         return;
     }
     nickName = inputFilter(nickName);
-    doHttpGet("?nickName=" + nickName);
+    doRegisterHttpGet("?nickName=" + nickName);
 });
 
 /**
@@ -172,7 +123,7 @@ function createSendingMessage(message) {
  * 使用jQuery的ajax简化操作
  * @param getParams
  */
-function doHttpGet(getParams) {
+function doRegisterHttpGet(getParams) {
     console.log("params", getParams);
     $.ajax({
         url: "/chat/register" + getParams,
@@ -181,7 +132,7 @@ function doHttpGet(getParams) {
         complete: function (res) {
             // console.log("res", res.responseText);
             // console.log("status", res.status);
-            if (res.status === 200) {
+            if (res.status === 200 && res.responseJSON.code === 200) {
                 var receiveData = JSON.parse(res.responseText);
                 if (receiveData["code"] === registerSuccessCode) {
                     nickName = receiveData["confirmNickName"];
@@ -194,6 +145,90 @@ function doHttpGet(getParams) {
 
         }
     });
+}
+
+function doInitGet() {
+    $.ajax({
+        url:"chat/init",
+        dataType: "json",
+        type:"GET",
+        complete: function (res) {
+            if (res.status === 200 && res.responseJSON.code === 200) {
+                socketUrl = res.responseJSON.data.socketUrl;
+                inited = true;
+                initSocket();
+            }else {
+                console.error("初始化页面参数失败");
+                $(".toast-body").text(res.responseJSON.message);
+                $("#toast-area").css("display", "block");
+                $(".toast").toast("show");
+                $(".toast").on("hidden.bs.toast", function (e) {
+                    $("#toast-area").css("display", "none");
+                    if (res.responseJSON.code === 8) {
+                        // debugger;
+                        window.location.href = res.responseJSON.data;
+                    }
+                });
+            }
+        }
+    })
+}
+
+function initSocket() {
+    //建立websocket连接
+    if (window.WebSocket) {
+        if (socket == null) {
+            // socket = new WebSocket("wss://120.77.222.242:9990");
+            socket = new WebSocket(socketUrl);
+        }
+    } else {
+        alert("您的浏览器不支持socket");
+        return;
+    }
+    //连接建立成功的回调函数
+    socket.onopen = function (e) {
+        // setInterval()
+    };
+    //接收到服务端的消息时的回调函数
+    socket.onmessage = function (e) {
+        // console.log("message", JSON.parse(e.data));
+        var receiveData = JSON.parse(e.data);
+        if (receiveData["methodCode"] === refreshCode) {
+            refreshOnlineCount(receiveData["onlineCount"]);
+        } else if (receiveData["methodCode"] === messageCode) {
+            receiveMessage(JSON.parse(receiveData["sendingMessage"])["nickName"], JSON.parse(receiveData["sendingMessage"])["message"]);
+        } else if (receiveData["methodCode"] === messageSendingSuccessCode) {
+            sendingMessageSuccess();
+        }
+    };
+    //发生错误时的回调函数
+    socket.onerror = function (e) {
+        console.log("error", e);
+    };
+    //连接关闭时的回调函数
+    socket.onclose = function (e) {
+        console.log("close", e);
+        console.log("closed socket", socket);
+        setTimeout(function () {
+            if (socket != null && socket.readyState === 3) {
+                // socket = new WebSocket("wss://120.77.222.242:9990");
+                socket = new WebSocket(socketUrl);
+            }
+        }, 300);
+        // alert("连接断开");
+    };
+
+    // console.log("cookie", document.cookie.search(cookieLoginNameKey));
+    if (document.cookie.search(cookieLoginNameKey) === -1) {
+        document.querySelector(".signWindow").style.display = "block";
+    } else {
+        var params = document.cookie.split(";");
+        for (var i in params) {
+            if (params[i].search(cookieLoginNameKey) !== -1) {
+                nickName = params[i].split("=")[1];
+            }
+        }
+    }
 }
 
 /**

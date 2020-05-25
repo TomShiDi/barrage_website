@@ -3,6 +3,7 @@ package barrage.demo.builders;
 import barrage.demo.dao.CommonDto;
 import barrage.demo.enums.AuthEnums;
 import barrage.demo.enums.BarrageExceptionEnum;
+import barrage.demo.enums.ChatRoomEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,6 +59,7 @@ public class ResponseDtoBuilder<T extends CommonDto> {
         return this;
     }
 
+
     /**
      * 设置data字段值
      * @param data 待设置的值
@@ -86,6 +88,7 @@ public class ResponseDtoBuilder<T extends CommonDto> {
         result.setMessage(barrageExceptionEnum.getMessage());
         return this;
     }
+
 
     /**
      * 枚举类型设值
