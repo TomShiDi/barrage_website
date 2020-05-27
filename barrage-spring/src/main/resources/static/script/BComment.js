@@ -15,7 +15,7 @@ function getCommentClick() {
         dataType: "json",
         url: "/bilibili/get-comment?avId=" + avId,
         complete: function (response) {
-            if (response.status == 200) {
+            if (response.status === 200 && response.responseJSON.code === 200) {
                 var data = JSON.parse(response.responseText);
                 var a = document.createElement("a");
                 // a.rel = "nofollow";
@@ -35,7 +35,11 @@ function getCommentClick() {
 
                 }
             } else {
-                alert("服务器错误");
+                if (response.status === 200 && response.responseJSON.code === 8) {
+                    window.location.href = window.location.protocol + "//" + window.location.host + "/login.html";
+                }else {
+                    alert("系统异常");
+                }
             }
             i.classList.remove("fa", "fa-spinner", "fa-spin");
         }

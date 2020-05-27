@@ -7,7 +7,7 @@ var refreshCode = 100;//服务端自定义的刷新消息的返回code
 var messageCode = 200;//服务器自定义的信息发送code
 var messageSendingSuccessCode = 1;//服务端自定义的：客户端消息发送成功的code
 var cookieLoginNameKey = "nickName";//用户nickname保存在cookie中的key字段
-var registerSuccessCode = 100;//用户的nickname提交服务端成功的code
+var registerSuccessCode = 200;//用户的nickname提交服务端成功的code
 var nickName = "";//用户的nickname
 
 let inited = false;
@@ -132,6 +132,7 @@ function doRegisterHttpGet(getParams) {
         complete: function (res) {
             // console.log("res", res.responseText);
             // console.log("status", res.status);
+            // debugger;
             if (res.status === 200 && res.responseJSON.code === 200) {
                 var receiveData = JSON.parse(res.responseText);
                 if (receiveData["code"] === registerSuccessCode) {
