@@ -56,7 +56,8 @@ public class BaseAspect {
             "&& !execution(public * barrage.demo.controller.RegisterController.*(..))" +
             "&& !execution(public * barrage.demo.controller.AuthController.*(..))" +
             "&& !execution(public * barrage.demo.controller.BarrageInfoController.getIndexPage(..))" +
-            "&& !execution(public * barrage.demo.controller.IndexController.*(..))"
+            "&& !execution(public * barrage.demo.controller.IndexController.*(..))" +
+            "&& !execution(public * barrage.demo.controller.WxAuthController.*(..))"
     )
     public void basePointCut() {
 
