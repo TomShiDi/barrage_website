@@ -106,5 +106,11 @@ ipRecordFilePath: /usr/barrage-site-visitor.txt
 
 socket-url: wss://120.77.222.242:9990
 
+wx:
+  appid: wxf3822efce7bdda30
+  appsecret: 6c2dbed5c5165ecb7cf459a773271f1a
+  code-url: https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf3822efce7bdda30&redirect_uri=http%3a%2f%2fbq78xm.natappfree.cc%2fwx%2fcode&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect
+  access-url: https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxf3822efce7bdda30&secret=6c2dbed5c5165ecb7cf459a773271f1a&code=!&grant_type=authorization_code
+
 login:
   userKey: tomshidi/

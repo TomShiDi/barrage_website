@@ -24,7 +24,7 @@
 <nav class="side-menu">
     <div class="settings">
         <a href="/login.html">
-            <img class="head-icon" src="pic/head-icon-1.jpg"/>
+            <img class="head-icon" src="pic/no_login.png"/>
         </a>
     </div>
     <div class="menu-ul">
