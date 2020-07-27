@@ -148,6 +148,12 @@
             <version>3.7.110.ALL</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
 
     </dependencies>
 
