@@ -25,7 +25,10 @@ public enum BarrageExceptionEnum {
     LOGIN_SUCCESS(24, "登录成功"),
     LOGIN_FAILED(25, "账号或密码错误"),
     REGISTER_SUCCESS(26, "注册成功"),
-    REGISTER_FAILED(27, "注册失败"),;
+    REGISTER_FAILED(27, "注册失败"),
+    QUOTES_NOT_FOUND(28, "当前名言警句信息不存在"),
+    INDEX_OUT_OF_BOUND(29, "quotes数据库下标越界"),
+    ;
 
 
     private Integer code;
