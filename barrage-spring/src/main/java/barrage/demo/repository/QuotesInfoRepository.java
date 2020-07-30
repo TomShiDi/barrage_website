@@ -15,5 +15,5 @@ public interface QuotesInfoRepository extends JpaRepository<QuotesInfo, Integer>
     @Query(value = "select * from quotes_info order by quotes_id asc limit ?1,1",nativeQuery = true)
     public QuotesInfo getOne(Integer index);
 
-    public QuotesInfo deleteByQuotesId(Integer quotesId);
+    public void deleteByQuotesId(Integer quotesId);
 }

@@ -1,5 +1,9 @@
 package barrage.demo.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,7 +12,10 @@ import java.util.Date;
  * @Since 2020/7/28
  * @Version 1.0
  */
+@Entity
 public class QuotesInfo implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer quotesId;
 
     private String quotesContent;

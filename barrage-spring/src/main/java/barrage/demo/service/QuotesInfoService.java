@@ -14,5 +14,6 @@ public interface QuotesInfoService {
 
     QuotesInfo save(QuotesInfo quotesInfo);
 
-    QuotesInfo deleteByQuotesId(Integer quotesId);
+    void deleteByQuotesId(Integer quotesId);
+
 }
