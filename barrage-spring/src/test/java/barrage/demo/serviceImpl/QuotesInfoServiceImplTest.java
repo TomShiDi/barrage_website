@@ -30,6 +30,7 @@ public class QuotesInfoServiceImplTest {
     @Test
     public void findByQuotesId() {
         QuotesInfo quotesInfo = quotesInfoService.findByQuotesId(1);
+        Assert.assertNotNull(quotesInfo);
     }
 
     @Test
