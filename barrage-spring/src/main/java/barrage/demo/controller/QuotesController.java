@@ -5,6 +5,7 @@ import barrage.demo.dto.QuotesInfoDto;
 import barrage.demo.dto.QuotesResponseDto;
 import barrage.demo.entity.QuotesInfo;
 import barrage.demo.entity.UserInfo;
+import barrage.demo.enums.AuthEnums;
 import barrage.demo.enums.BarrageExceptionEnum;
 import barrage.demo.exception.BarrageException;
 import barrage.demo.service.QuotesInfoService;
@@ -58,8 +59,7 @@ public class QuotesController {
         QuotesInfo quotesInfo = new QuotesInfo();
         BeanUtils.copyProperties(quotesInfoDto,quotesInfo);
         if (userInfo == null) {
-            //TODO 登录模块Session存值待完善
-            quotesInfo.setPublisherId(1);
+            throw new BarrageException(AuthEnums.AUTH_NOT_LOGIN);
         }else {
             quotesInfo.setPublisherId(userInfo.getUserId());
         }

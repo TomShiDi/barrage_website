@@ -54,7 +54,7 @@ public class AuthController {
     @Value("${login.userKey}")
     private String userKey;
 
-    private String SESSON_USERID = "userId";
+    private String SESSON_USERINFO = "userInfo";
 
 
     @Autowired
@@ -104,7 +104,6 @@ public class AuthController {
 
         String loginToken = RandomKeyUtil.getUniqueUuid();
         CookieUtil.setLoginCookie(attributes.getResponse(), loginInfoDto.getUserName(), loginToken);
-
 //        DigestUtils.md5Digest((userKey + userInfo.getUserPassword()).getBytes());
         defaultRedisComponent.setAsKeyValue(loginInfoDto.getUserName(), loginToken);
 //        SendResult<String, Object> result = null;
@@ -165,7 +164,7 @@ public class AuthController {
         if (AuthEnums.STATUS_BANNED.getCode().equals(origin.getUserStatus())) {
             return AuthEnums.STATUS_BANNED.getCode();
         }
-        request.getSession().setAttribute(SESSON_USERID, origin.getUserId());
+        request.getSession().setAttribute(SESSON_USERINFO, origin);
         return AuthEnums.TRUE.getCode();
     }
 }

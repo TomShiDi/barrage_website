@@ -5,6 +5,7 @@ import barrage.demo.enums.AuthEnums;
 import barrage.demo.exception.BarrageException;
 import barrage.demo.redis.DefaultRedisComponent;
 import barrage.demo.utils.CookieUtil;
+import barrage.demo.utils.DateFormatUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -51,14 +52,15 @@ public class BaseAspect {
     }
 
 //    "&& !execution(public * barrage.demo.controller.AuthController.*(..))"
-    @Pointcut(value = "execution(public * barrage.demo.controller.*.*(..)) " +
-            "&& !execution(public * barrage.demo.controller.TestController.*(..))" +
-            "&& !execution(public * barrage.demo.controller.RegisterController.*(..))" +
-            "&& !execution(public * barrage.demo.controller.AuthController.*(..))" +
-            "&& !execution(public * barrage.demo.controller.BarrageInfoController.getIndexPage(..))" +
-            "&& !execution(public * barrage.demo.controller.IndexController.*(..))" +
-            "&& !execution(public * barrage.demo.controller.WxAuthController.*(..))"
-    )
+@Pointcut(value = "execution(public * barrage.demo.controller.*.*(..)) " +
+        "&& !execution(public * barrage.demo.controller.TestController.*(..))" +
+        "&& !execution(public * barrage.demo.controller.RegisterController.*(..))" +
+        "&& !execution(public * barrage.demo.controller.AuthController.*(..))" +
+        "&& !execution(public * barrage.demo.controller.BarrageInfoController.getIndexPage(..))" +
+        "&& !execution(public * barrage.demo.controller.IndexController.*(..))" +
+        "&& !execution(public * barrage.demo.controller.WxAuthController.*(..))"
+        + "&& !execution(public * barrage.demo.controller.QuotesController.getOne(..))"
+)
     public void basePointCut() {
 
     }
@@ -92,13 +94,13 @@ public class BaseAspect {
             ip = request.getRemoteAddr();
         }
         if (ip != null && !ip.isEmpty()) {
-            writeIpToFile(ip);
+            writeIpToFile(ip, request.getRequestURI());
         }
 
         judgeLoginStatus(request, response);
     }
 
-    private void writeIpToFile(String ip) throws Exception {
+    private void writeIpToFile(String ip,String path) throws Exception {
         File file = new File(ipRecordFile);
         if (!file.exists()) {
             file.createNewFile();
@@ -107,7 +109,7 @@ public class BaseAspect {
         BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
 //        System.getProperty("line.separator")
         String newline = System.getProperty("line.separator");
-        bufferedOutputStream.write((new Date().toString() + ": " + ip + newline).getBytes());
+        bufferedOutputStream.write((DateFormatUtil.toChinaNormal(new Date()) + ":\t " + ip + "--->" + path + newline).getBytes());
         bufferedOutputStream.close();
         fileOutputStream.close();
     }

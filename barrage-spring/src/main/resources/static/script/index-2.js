@@ -1,4 +1,5 @@
 "use strict";
+import {Quotes} from './quotes.js';
 
 var barrageContent = document.getElementsByClassName("barrage-content")[0];
 // var rect = barrageContent.getBoundingClientRect();
@@ -74,6 +75,7 @@ barrageData_2 = barrageData_2.concat();
  * 初始化操作自执行函数
  */
 (function () {
+    Quotes.getOne();
     for (var i = 0; i < barrageData_2.length; i++) {
         barrageData_2[i]["road"] = i % barrageRoad.length;
     }
@@ -521,6 +523,7 @@ function unstar(option) {
         }
     });
 }
+
 
 /**
  * 浏览器内核判断函数
