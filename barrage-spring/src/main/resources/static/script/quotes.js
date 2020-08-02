@@ -1,5 +1,5 @@
 let Quotes = {
-    preIndex:0,
+    preIndex:-1,
     preDate:null,
     currDate:null,
 };
@@ -12,6 +12,7 @@ Quotes.getOne = function () {
         dataType: "json",
         success: function (e) {
             $("div[quotes-flag]").text(JSON.stringify(e.data.quotesContent));
+            that.preDate = Date.now();
             that.preIndex++;
         }
     })
