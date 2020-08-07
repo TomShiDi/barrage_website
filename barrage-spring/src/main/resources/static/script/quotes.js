@@ -1,5 +1,5 @@
 let Quotes = {
-    preIndex:-1,
+    preIndex: Math.floor(Math.random() * 33),
     preDate:null,
     currDate:null,
 };
@@ -14,6 +14,7 @@ Quotes.getOne = function () {
             // $("div[quotes-flag] pre").text(JSON.stringify(e.data.quotesContent));
             // debugger;
             console.log(e.data.quotesContent);
+
             document.querySelector("div[quotes-flag] pre").innerText = e.data.quotesContent;
             // document.querySelector("div[quotes-flag] pre").innerText = "akjsdhajkhdkjak\r\namdnkakdja";
             that.preDate = Date.now();
