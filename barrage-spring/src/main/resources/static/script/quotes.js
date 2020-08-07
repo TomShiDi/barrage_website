@@ -11,7 +11,11 @@ Quotes.getOne = function () {
         type: "get",
         dataType: "json",
         success: function (e) {
-            $("div[quotes-flag]").text(JSON.stringify(e.data.quotesContent));
+            // $("div[quotes-flag] pre").text(JSON.stringify(e.data.quotesContent));
+            // debugger;
+            console.log(e.data.quotesContent);
+            document.querySelector("div[quotes-flag] pre").innerText = e.data.quotesContent;
+            // document.querySelector("div[quotes-flag] pre").innerText = "akjsdhajkhdkjak\r\namdnkakdja";
             that.preDate = Date.now();
             that.preIndex++;
         }
