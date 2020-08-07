@@ -112,7 +112,10 @@
     </div>
 </nav>
 <div class="barrage-box">
-    <div class="barrage-content">
+    <!--<div style="z-index: -100;width: 100%;height: 100%;color: #3d3d3d;font-size: 20px">-->
+    <!--测试文字-->
+    <!--</div>-->
+    <div class="barrage-content" style="position: relative;top: 0;">
         <div class="barrage-road">
                 <span class="barrage">
                     <img src="pic/huaji.jpg" rel="icon" class="barrage-head-img" alt=""/>
@@ -139,6 +142,41 @@
 
         </div>
         <div class="barrage-road">
+
+        </div>
+        <div style="z-index: -100;position: absolute;top: 0;width: 100%;height: 100%;color: #c841cb;font-size: 20px;display: flex;justify-content: center;align-items: center;">
+            <div style="width: 50%;
+            height: 50%;
+            word-break: break-all;
+            white-space: normal;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 2px 0 2px rgba(139,255,134,0.58),0 2px 2px rgba(167,254,106,0.58),-2px 0 2px rgba(167,254,106,0.58),0 -2px 2px rgba(167,254,106,0.58);
+            border-radius: 8px;
+            overflow: hidden;
+            padding: 2%;
+        " quotes-flag>
+                <pre style="width: 100%;
+            height: 100%;
+            word-break: break-all;
+            white-space: normal;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /*box-shadow: 2px 0 2px rgba(139,255,134,0.58),0 2px 2px rgba(167,254,106,0.58),-2px 0 2px rgba(167,254,106,0.58),0 -2px 2px rgba(167,254,106,0.58);*/
+            border-radius: 8px;
+            overflow: hidden;
+            padding: 2%;
+            color: #c841cb;
+            font-size: 20px;
+            ">
+
+                </pre>
+                <!--测试文字<br /> sadasda <br /> sadasda <br /> sadasda <br /> sadasda <br /> sadasda-->
+                <!--测试文字<br /> sadasda <br /> sadasda <br /> sadasda <br /> sadasda <br /> sadasda-->
+                <!--测试文字<br /> sadasda <br /> sadasda <br /> sadasda <br /> sadasda <br /> sadasda-->
+            </div>
 
         </div>
     </div>
@@ -194,7 +232,7 @@
     <img src="pic/phone-reverse.gif">
     <span>请解除手机屏幕锁定，并将手机横屏放置</span>
 </div>
-<script type="text/javascript" src="script/index-2-pro.js?t=1.1.5"></script>
+<script type="module" src="script/index-2.js?t=1.1.6"></script>
 <ul class="right-menu-ul" style="display: none">
     <li class="menu-item">举报当前弹幕</li>
 </ul>
