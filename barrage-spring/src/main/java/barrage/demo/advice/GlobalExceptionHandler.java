@@ -2,6 +2,7 @@ package barrage.demo.advice;
 
 import barrage.demo.dao.ExceptionDao;
 import barrage.demo.exception.BarrageException;
+import com.mysql.jdbc.Driver;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

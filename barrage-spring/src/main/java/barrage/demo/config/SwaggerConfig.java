@@ -11,6 +11,12 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
+/**
+ *  swagger个人信息配置
+ *  @Author TomShiDi
+ *  @Since 2020/8/27 17:37
+ *  @Version 1.0
+ */
 @Configuration
 public class SwaggerConfig {
 

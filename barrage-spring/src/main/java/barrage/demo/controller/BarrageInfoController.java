@@ -53,7 +53,6 @@ public class BarrageInfoController {
             barrageDto.setMessage(bindingResult.getFieldError().getDefaultMessage());
             return barrageDto;
         }
-
         barrageInfoService.saveBarrageInfo(barrageInfo);
 
         BarrageDto barrageDto = new BarrageDto();
@@ -62,7 +61,6 @@ public class BarrageInfoController {
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("barrageInfo", barrageInfo);
         barrageDto.setResultData(resultMap);
-
         return barrageDto;
     }
 
