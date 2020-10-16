@@ -1,24 +1,24 @@
-window.onload = function (e) {
-    $('#btn-submit').on("click", function (e) {
+window.onload = function () {
+    $('#btn-submit').on("click", function () {
         formSubmit();
     });
 
-    $('.toast').on('hidden.bs.toast', function (e) {
+    $('.toast').on('hidden.bs.toast', function () {
         let url = window.location.protocol + "//" + window.location.hostname + ((window.location.port === "") ? "" : (":" + window.location.port));
         // let url = window.location.protocol + "//" + window.location.host;
         $('#toast-area').css("display", "none");
         window.location.href = url;
     });
 
-    $("#name").on("input", function (e) {
+    $("#name").on("input", function () {
         $("#name+.invalid-message").css("display", "none");
     });
 
-    $("#email").on("input", function (e) {
+    $("#email").on("input", function () {
         $("#group-email+.invalid-message").css("display", "none");
     });
 
-    $("#password").on("input", function (e) {
+    $("#password").on("input", function () {
         $("#password+.invalid-message").css("display", "none");
     });
 

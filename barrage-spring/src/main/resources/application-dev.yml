@@ -120,4 +120,4 @@ login:
 
 
 #mybatis:
-#  mapper-locations: classpath:barrage/demo/mapper/barrage_info.xml
+#  mapper-locations: classpath:barrage/demo/mapper/*.xml

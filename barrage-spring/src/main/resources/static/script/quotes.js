@@ -1,5 +1,5 @@
 let Quotes = {
-    preIndex: Math.floor(Math.random() * 33),
+    preIndex: Math.floor(Math.random() * 54),
     preDate:null,
     currDate:null,
 };

@@ -42,15 +42,37 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="avId" class="col-sm-2 control-label">视频编号(不含av字符)</label>
+                    <label for="avId" class="col-sm-2 control-label">视频编号(纯数字)</label>
                     <div class="col-sm-10">
                         <input type="number" class="form-control" name="avId" id="avId"/>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10" style="text-align: center">
                         <i class=""></i>
                         <button type="button" class="btn btn-default" onclick="getCommentClick()">提取</button>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-md-12 column">
+                        <p><strong>B站改用BV号了，需要使用以下的方法获取真实url</strong></p>
+                        <br>
+                    </div>
+                    <div class="col-md-12 column">
+                        <p><strong>打开待提取的视频网页</strong></p>
+                    </div>
+                    <div class="col-md-12 column">
+                        <p><strong>在视频页F12打开浏览器开发者工具栏</strong></p>
+                    </div>
+                    <div class="col-md-12 column">
+                        <p><strong>在控制台（console）界面输入以下命令回车获取真实url</strong></p>
+                    </div>
+                    <div class="col-md-12 column">
+                        <p><strong>document.head.querySelector("meta[itemprop=url]").getAttribute("content")</strong></p>
+                    </div>
+                    <div class="col-md-12 column">
+                        <p><strong>然后将获取到的av字符后的数字填入提取框即可</strong></p>
                     </div>
                 </div>
             </form>
