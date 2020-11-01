@@ -20,7 +20,7 @@ import java.util.List;
  * @Description
  */
 @Service
-@Transactional(rollbackFor = RuntimeException.class)
+@Transactional(rollbackFor = Exception.class)
 public class UserInfoServiceImpl implements UserInfoService {
 
     private UserInfoRepository repository;
@@ -30,34 +30,34 @@ public class UserInfoServiceImpl implements UserInfoService {
         this.repository = repository;
     }
 
-    @Cacheable(cacheNames = "myCache",keyGenerator = "keyGenerator")
+//    @Cacheable(cacheNames = "myCache",keyGenerator = "keyGenerator")
     @Override
     public UserInfo findByUserId(Integer userId) {
         UserInfo userInfo = repository.findByUserId(userId);
         return userInfo;
     }
 
-    @Cacheable(cacheNames = "myCache",keyGenerator = "keyGenerator")
+//    @Cacheable(cacheNames = "myCache",keyGenerator = "keyGenerator")
     @Override
     public List<UserInfo> findByNickName(String nickName) {
         List<UserInfo> userInfoList = repository.findByNickName(nickName);
         return userInfoList;
     }
 
-    @Cacheable(cacheNames = "myCache",keyGenerator = "keyGenerator")
+//    @Cacheable(cacheNames = "myCache",keyGenerator = "keyGenerator")
     @Override
     public UserInfo findByUserPhoneNum(String phoneNum) {
         UserInfo userInfo = repository.findByUserPhoneNum(phoneNum);
         return userInfo;
     }
 
-    @Cacheable(cacheNames = "myCache",keyGenerator = "keyGenerator")
+//    @Cacheable(cacheNames = "myCache",keyGenerator = "keyGenerator")
     @Override
     public UserInfo findByUserEmail(String userEmail) {
         return repository.findByUserEmail(userEmail);
     }
 
-    @Cacheable(cacheNames = "myCache",keyGenerator = "keyGenerator")
+//    @Cacheable(cacheNames = "myCache",keyGenerator = "keyGenerator")
     @Override
     public UserInfo findByUserEmailAndStatus(String userEmail,Integer status) {
         return repository.findByUserEmailAndUserStatus(userEmail,status);
@@ -73,13 +73,13 @@ public class UserInfoServiceImpl implements UserInfoService {
         deleteByUserId(userId, userInfo.getUserEmail());
     }
 
-    @CacheEvict(cacheNames = "myCache",key = "#root.targetClass +'['+#userEmail+']'")
+//    @CacheEvict(cacheNames = "myCache",key = "#root.targetClass +'['+#userEmail+']'")
     @Override
     public void deleteByUserId(Integer userId, String userEmail) {
         repository.deleteByUserId(userId);
     }
 
-    @CachePut(cacheNames = "myCache", key = "#root.targetClass +'['+#userInfo.userEmail+']'")
+//    @CachePut(cacheNames = "myCache", key = "#root.targetClass +'['+#userInfo.userEmail+']'")
     @Override
     public UserInfo saveUserInfo(UserInfo userInfo) {
         UserInfo result = repository.save(userInfo);
@@ -89,7 +89,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         return result;
     }
 
-    @CachePut(cacheNames = "myCache", key = "#root.targetClass +'['+#userInfo.userEmail+']'")
+//    @CachePut(cacheNames = "myCache", key = "#root.targetClass +'['+#userInfo.userEmail+']'")
     @Override
     public UserInfo updateUserInfo(UserInfo userInfo) {
         UserInfo result = repository.findByUserId(userInfo.getUserId());
@@ -99,7 +99,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         return repository.save(userInfo);
     }
 
-    @CachePut(cacheNames = "myCache", key = "#root.targetClass +'['+#userEmail+']'")
+//    @CachePut(cacheNames = "myCache", key = "#root.targetClass +'['+#userEmail+']'")
     @Override
     public int updateUserAccountStatus(String userEmail, Integer status) {
         return repository.updateUserAccountStatus(userEmail, status);

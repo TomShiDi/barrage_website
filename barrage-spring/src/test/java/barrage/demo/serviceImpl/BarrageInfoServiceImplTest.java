@@ -15,7 +15,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @SpringBootTest
 public class BarrageInfoServiceImplTest {
 
@@ -43,7 +43,6 @@ public class BarrageInfoServiceImplTest {
         BarrageInfo result = barrageInfoService.saveBarrageInfo(barrageInfo);
 
         Assert.assertNotNull(result);
-
     }
 
     @Test

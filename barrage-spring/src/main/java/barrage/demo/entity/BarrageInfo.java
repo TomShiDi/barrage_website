@@ -9,6 +9,12 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ *
+ * @Author TomShiDi
+ * @Date 2020年10月22日14:12:13
+ * @Description
+ */
 @Entity
 public class BarrageInfo implements Serializable {
 

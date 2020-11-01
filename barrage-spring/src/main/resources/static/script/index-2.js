@@ -1,4 +1,4 @@
-"use strict";
+// "use strict";
 import {Quotes} from './quotes.js';
 
 var barrageContent = document.getElementsByClassName("barrage-content")[0];
@@ -104,6 +104,12 @@ window.onload = function (ev) {
     if (document.body.clientWidth <= 480) {
         isStart = false;
     }
+    /**
+     * 当前文件1.1.6版本后使用ES6规范下的module加载js，故HTML标签中无法再直接使用module模式引入的js文件中的方法
+     * 因为module模式加载文件有作用域
+     * 所以这里使用事件绑定
+     */
+    document.querySelector('.button-area button.send-button').addEventListener("click", addBarrageData);
     // document.querySelector(".tipImgArea").onclick = function (e) {
     //     document.body.style.webkitTransform = "rotate(90deg)";
     //     document.body.style.transform = "rotate(90deg)";

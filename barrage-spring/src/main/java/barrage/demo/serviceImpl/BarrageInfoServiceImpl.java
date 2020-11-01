@@ -20,7 +20,7 @@ import java.util.List;
  * @Description 弹幕服务实现类
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 //@MethodLog
 public class BarrageInfoServiceImpl implements BarrageInfoService {
 

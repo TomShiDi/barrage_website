@@ -2,6 +2,9 @@ package barrage.demo.utils;
 
 import barrage.demo.entity.BilibiliCommentEntity;
 import com.google.gson.Gson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.Assert;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -10,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 public class BilibiliJsonUtil {
+    private final static Logger logger = LoggerFactory.getLogger(BilibiliJsonUtil.class);
 
     public static int size = 0;
 
@@ -20,7 +24,9 @@ public class BilibiliJsonUtil {
     private static String filePath = "D:/bilibiliComment";
 
     @SuppressWarnings("unchecked")
-    public static List<Map<String, String>> jsonParse(String jsonString) throws IOException {
+    public static synchronized List<Map<String, String>> jsonParse(String jsonString) throws IOException {
+        logger.info("当前工作的线程为: {}", Thread.currentThread().getName());
+//        Assert.isNull(jsonString, "空字符串");
         Gson gson = new Gson();
         List<Map<String, String>> returnData = new ArrayList<>(32);
         Map<String, String> item;
