@@ -7,7 +7,7 @@
  + 原生**javascript**,**html5**,**css3**,以及**jQuery**,**bootstrap**
 
 + 后端:
- + **springboot2.0** **mysql** **JpaRepository** **freemarker** **Mybatis** **Kafka** **Redis**
+ + **springboot2.0** **mysql** **JpaRepository** **freemarker** **Mybatis** **Kafka** **Redis** **websocket**
 
 ## 设备支持情况
 +  手机端支持（横屏）
