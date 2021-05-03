@@ -16,11 +16,11 @@
  + 手机端请横屏使用
 
 
-## 演示地址(https也可以)  [http://selltom.mynatapp.cc/index-2.html](https://selltom.mynatapp.cc/index-2.html "演示地址") 因新增的聊天室功能需要证书，访问请使用[https://120.77.222.242/index](https://120.77.222.242/index)
+## 演示地址(https也可以)  [http://selltom.mynatapp.cc/index-2.html](https://selltom.mynatapp.cc/index-2.html "演示地址") 因新增的聊天室功能需要证书，访问请使用~~[https://120.77.222.242/index](https://120.77.222.242/index)~~ 已暂停云上部署
 
 
 
-## 演示地址全天开放
+## ~~演示地址全天开放~~
 ![](http://chuantu.xyz/t6/731/1587879834x3752237043.png)
 
 ## 新增功能
