@@ -16,7 +16,7 @@
  + 手机端请横屏使用
 
 
-## 演示地址(https也可以)  [http://selltom.mynatapp.cc/index-2.html](https://selltom.mynatapp.cc/index-2.html "演示地址") 因新增的聊天室功能需要证书，访问请使用 
+## ~~演示地址(https也可以)  [http://selltom.mynatapp.cc/index-2.html](https://selltom.mynatapp.cc/index-2.html "演示地址") 因新增的聊天室功能需要证书，访问请使用~~ 
 ~~[https://120.77.222.242/index](https://120.77.222.242/index)~~ 已暂停云上部署
 
 
