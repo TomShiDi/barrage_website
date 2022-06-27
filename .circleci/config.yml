@@ -22,14 +22,10 @@ jobs:
       - run:
           name: Build
           command: mvn -B -DskipTests -f barrage-spring/pom.xml clean package
-          environment:
-            app_src_directory: barrage_website
       # Then run your tests!
-      - run:
-          name: Test
-          command: mvn -f barrage-spring/pom.xml test
-          environment:
-            app_src_directory: barrage_website
+      # - run:
+      #     name: Test
+      #     command: mvn -f barrage-spring/pom.xml test
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
